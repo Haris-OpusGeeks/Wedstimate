@@ -1,0 +1,96 @@
+$primary : #023866;
+$secondary: #000;
+$tertiary: #fff;
+
+.blogPageDashboard{
+  padding: 40px 50px;
+  max-height: 85vh;
+  overflow-y: auto;
+  .container-fluid{
+    border: 1px solid $primary;
+    background-color: $tertiary;
+    padding: 40px 30px;
+    .row{
+      .col-lg-8{
+        h2{
+          font-size: 40px;
+          font-weight: 700;
+          color: $primary;
+        }
+        p{
+          font-size: 16px;
+          color: $primary;
+        }
+      }
+      .col-lg-4{
+        .d-flex{
+          height: 100%;
+          padding-bottom: 20px;
+          justify-content: flex-end;
+          align-items: flex-end;
+          .btn{
+            width: 125px;
+            background-color: $primary;
+            border: 1px solid $primary;
+            border-radius: 0;
+            color: $tertiary;
+            font-weight: 700;
+          }
+          .dropdown{
+            .btn-secondary{
+              background-color: transparent;
+              color: $primary;
+              &::after{
+                display: none;
+              }
+              svg{
+                margin-left: 10px;
+              }
+            }
+            .dropdown-menu{
+              padding: 20px 10px;
+              border: 2px solid $primary;
+              li{
+                padding: 10px 0 0 0;
+                .dropdown-item{
+                  padding: 5px 0;
+                  // padding: 0;
+                  border-right: 2px solid $primary;
+                  &::after{
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .listingArea{
+      margin-top: 30px;
+      .rdt_TableHeadRow{
+        .rdt_TableCol{
+          justify-content: center;
+          &:nth-child(2){
+            justify-content: flex-start;
+          }
+        }
+      }
+      .rdt_TableRow{
+        .rdt_TableCell{
+          justify-content: center;
+          &:nth-child(2){
+            justify-content: flex-start;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width:768px){
+  .blogPageDashboard{
+    padding: 20px;
+  }
+}

@@ -1,0 +1,164 @@
+@font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Book.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Heavy.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Medium.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Roman.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+@import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400..800&display=swap');
+$primary : #023866;
+$secondary: #000;
+$tertiary: #fff;
+body, html{
+    font-family: 'Avenir', sans-serif !important;
+    overflow-x: hidden;
+}
+.dashboardHeader{
+    padding: 32px 48px;
+    .container-fluid{
+        .row{
+            .col-lg-6{
+                &:first-child{
+                    display: flex;
+                    // justify-content: flex-end;
+                    align-self: center;
+                    .btn{
+                        display: none;
+                    }
+                    form{
+                        .input-group{
+                            display: flex;
+                            justify-content: flex-start;
+                            align-items: center;
+                            border: 1px solid $primary;
+                            width: 400px;
+                            padding-left: 22px;
+                            i{}
+                            input{
+                                padding-left: 22px;
+                                border: none;
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+                &:last-child{
+                    display: flex;
+                    justify-content: flex-end;
+                    align-self: center;
+                    .row{
+                        display: flex;
+                        .profilebox{
+                            display: flex;
+                            width: max-content;
+                            gap: 10px;
+                            align-items: center;
+                            img{
+                                width: 50px;
+                                height: 50px;
+                            }
+                            h6{
+                                width: max-content;
+                            }
+                        }
+                        .notificationBox{
+                            width: max-content;
+                            display: flex;
+                            align-items: center;
+                            .dropdown{
+                                padding: 0;
+                                height: max-content;
+                                .dropdown-toggle{
+                                    background-color: transparent;
+                                    border: none;
+                                    padding: 0;
+                                    &::after{
+                                        display: none;
+                                    }
+                                    svg{
+                                        width: 40px;
+                                        height: 40px;
+                                    }
+                                }
+                                .dropdown-menu{
+                                    padding: 10px;
+                                    li{
+                                        .dropdown-item{
+                                            &::after{
+                                                display: none;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width:768px){
+    .dashboardHeader{
+        padding: 10px;
+        .container-fluid{
+            .row{
+                flex-direction: row-reverse;
+                .col-lg-6{
+                    &:first-child{
+                        width: 20%;
+                        .btn{
+                            display: flex;
+                            i{
+                                font-size: 26px;
+                            }
+                        }
+                        form{
+                            display: none;
+                        }
+                    }
+                    &:last-child{
+                        justify-content: flex-start;
+                        width: 80%;
+                    }
+                }
+            }
+        }
+    }
+}

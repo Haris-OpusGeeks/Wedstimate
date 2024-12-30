@@ -1,0 +1,173 @@
+@font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Book.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Heavy.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Medium.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Roman.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+@import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400..800&display=swap');
+$primary : #023866;
+$secondary: #000;
+$tertiary: #fff;
+body, html{
+    font-family: 'Avenir', sans-serif !important;
+    overflow-x: hidden;
+}
+
+
+.dashboardDiv{
+  padding: 2vw 3vw;
+  h2{
+    font-size: 40px;
+    font-weight: 700 !important;
+    color: $primary;
+    margin-bottom: 20px;
+  }
+  .dashboardBox{
+    padding: 50px;
+    border: 1px solid $primary;
+    .row{
+      height: 100%;
+      align-items: center;
+      .col-lg-6{
+        p{
+          font-size: 16px;
+          font-weight: 400;
+          margin: 0;
+          &.blue{
+            color: $primary;
+          }
+        }
+        &:first-child{
+          p{
+            padding-bottom: 10px;
+          }
+          h4{
+            font-size: 32px;
+            font-weight: 600;
+            color: $primary;
+          }
+          .flex{
+            margin-top: 20px;
+            .btn{
+              border: 1px solid #023866;
+              padding: 10px 40px;
+              border-radius: 0;
+              margin-right: 20px;
+              &:first-child{
+                background: #FFF;
+              }
+              &:last-child{
+                color: $tertiary;
+                background: $primary;
+              }
+            }
+          }
+        }
+        &:last-child{
+          .row{
+            column-gap: 2%;
+            .col-lg-5{
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              padding: 30px 20px;
+              border:1px solid $primary;
+              background-color: $tertiary;
+              h2{
+                margin-bottom: 0;
+              }
+              h4{}
+              button{}
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+@media(max-width:768px){
+  .dashboardDiv{
+    h2{}
+    .dashboardBox{
+      padding: 20px;
+      .row{
+        .col-lg-6{
+          &:first-child{
+            h4{}
+            .flex{
+              display: flex;
+              column-gap: 10px;
+              .btn{
+                padding: 12px 0;
+                margin: 0;
+                width: 48% !important;
+              }
+            }
+          }
+          &:last-child{
+            margin-top: 20px;
+            .costBox{
+              padding: 0;
+              .flex{
+                .cost{
+                  margin: 0;
+                  h3{}
+                }
+              }
+              .btn{}
+            }
+            .zipCodeDiv{
+              flex-direction: column !important;
+              align-items: center !important;
+              .zipCode{
+                padding: 0;
+                border-right: none;
+                padding-bottom: 10px;
+                // border-bottom: 1px solid $primary;
+                margin-bottom: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

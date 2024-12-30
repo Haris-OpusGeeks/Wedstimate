@@ -1,0 +1,251 @@
+@font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Book.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Heavy.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Medium.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Roman.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+$primary : #023866;
+$secondary: #000;
+$tertiary: #fff;
+  
+body, html{
+    font-family: 'Avenir', sans-serif !important;
+    overflow-x: hidden;
+}
+.weddingBuildingInner{
+    .titleBox{
+        margin-bottom: 30px;
+        .d-flex{
+            align-items: center;
+            .imageBox{
+                background-color: #e8f6ff;
+                border-radius: 50%;
+                width: 115px;
+                height: 115px;
+                padding: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                img{
+                    object-fit: contain;
+                    width: 100%;
+                }
+            }
+            .title{
+                margin-left: 30px;
+                h2{
+                    font-size: 38px;
+                    font-weight: 800;
+                    color: $primary;
+                }
+                p{}
+            }
+        }
+    }
+    .container{
+        .d-flex{
+            .categories{
+                display: flex;
+                flex-direction: column;
+                row-gap: 10px;
+                width: 20%;
+                padding-right: 20px;
+                .categorySec{
+                    max-height: 250px;
+                    overflow-y: scroll;
+                    h4{
+                        font-size: 14px;
+                        font-weight: 700;
+                    }
+                    .form-check{
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 10px;
+                        padding: 0;
+                        padding-left: 5px;
+                        input{
+                            width: 20px;
+                            height: 20px;
+                            border-width: 2px;
+                            border-color: #000;
+                            margin: 0;
+                        }
+                        label{
+                            font-size: 14px;
+                            padding-left: 10px;
+                            margin: 0;
+                        }
+                    }
+                }
+                hr{
+                    width: 80%;
+                }
+            }
+            .main{
+                width: 80%;
+                display: flex;
+                flex-direction: column;
+                row-gap: 20px;
+                .row{
+                    column-gap: 2%;
+                    row-gap: 20px;
+                    .col-lg-4{
+                        width: 32%;
+                        background-color: $tertiary;
+                        box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 16px 0px;
+                        padding: 0;
+                        display: flex;
+                        flex-direction: column;
+                        img{
+                            width: 100%;
+                            height: 150px;
+                            object-fit: cover;
+                        }
+                        button{
+                            margin-top: 20px;
+                            margin-left: 20px;
+                            margin-right: 20px;
+                            background-color: transparent;
+                            border: none;
+                            padding: 0;
+                            font-size: 14px;
+                            display: flex;
+                            &.btn{
+                                align-self: center;
+                                padding: 10px 10px;
+                                border: 1px solid $primary;
+                                border-radius: 0;
+                                font-size: 14px;
+                                margin-bottom: 20px;
+                                &:hover{
+                                    background-color: $primary;
+                                    color: $tertiary;
+                                }
+                            }
+                            &.chatBtn{
+
+                            }
+                        }
+                        h5{
+                            font-size: 14px;
+                            font-weight: 700;
+                            color: $primary;
+                            text-decoration: underline;
+                        }
+                        p{
+                            font-size: 12px;
+                            margin:0 20px;
+                            &.underline{}
+                        }
+                        h6{
+                            font-size: 15px;
+                            font-weight: 700;
+                            margin-left: 20px;
+                            margin-top: 10px;
+                            margin-bottom: 0;
+                            color: $primary;
+                        }
+                    }
+                }
+                .pagination{
+                    margin-top: 30px;
+                    display: flex;
+                    justify-content: center;
+                    column-gap: 10px;
+                    .btn-primary{
+                        border: 1px solid $primary;
+                        background-color: transparent;
+                        color: $primary;
+                        &.active{
+                            background-color: $primary;
+                            color: $tertiary;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width:768px){
+    .weddingBuildingInner{
+        .titleBox{
+            margin-left: 2vw;
+            .d-flex{
+                .title{
+                    margin-left: 4vw;
+                    h2{
+                        font-size: 30px !important;
+                        margin: 0;
+                    }
+                    p{
+                        margin: 0;
+                    }
+                }
+                .imageBox{
+                    height: calc(100% + 40px);
+                    width: fit-content;
+                    img{
+                        width: 15vw;
+                    }
+                }
+            }
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            .d-flex{
+                .categories{
+                    width: 40%;
+                }
+                .main{
+                    width: 55%;
+                    flex-wrap: wrap;
+                    .row{
+                        row-gap: 20px;
+                        flex-wrap: wrap;
+                        .col-sm-12{
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

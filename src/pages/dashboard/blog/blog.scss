@@ -1,0 +1,286 @@
+$primary : #023866;
+$secondary: #000;
+$tertiary: #fff;
+
+.blogPageDashboard{
+    padding: 40px 50px;
+    max-height: 85vh;
+    overflow-y: auto;
+    .container-fluid{
+        border: 1px solid $primary;
+        background-color: $tertiary;
+        padding: 40px 30px;
+        .row{
+            .col-lg-8{
+                h2{
+                    font-size: 40px;
+                    font-weight: 700;
+                    color: $primary;
+                }
+                p{
+                    font-size: 16px;
+                    color: $primary;
+                }
+            }
+            .col-lg-4{
+                .d-flex{
+                    height: 100%;
+                    padding-bottom: 20px;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    .btn{
+                        width: 125px;
+                        background-color: $primary;
+                        border: 1px solid $primary;
+                        border-radius: 0;
+                        color: $tertiary;
+                        font-weight: 700;
+                    }
+                    .dropdown{
+                        .btn-secondary{
+                            background-color: transparent;
+                            color: $primary;
+                            &::after{
+                                display: none;
+                            }
+                            svg{
+                                margin-left: 10px;
+                            }
+                        }
+                        .dropdown-menu{
+                            padding: 20px 10px;
+                            border: 2px solid $primary;
+                            li{
+                                padding: 10px 0 0 0;
+                                .dropdown-item{
+                                    padding: 5px 0;
+                                    // padding: 0;
+                                    border-right: 2px solid $primary;
+                                    &::after{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .listingArea{
+            margin-top: 30px;
+            overflow-y: auto;
+            .rdt_TableHeadRow{
+                .rdt_TableCol{
+                    justify-content: center;
+                    &:nth-child(2){
+                        justify-content: flex-start;
+                    }
+                    &:nth-child(3){
+                        justify-content: flex-start;
+                    }
+                }
+            }
+            .rdt_TableRow{
+                .rdt_TableCell{
+                    justify-content: center;
+                    &:nth-child(2){
+                        justify-content: flex-start;
+                    }
+                    &:nth-child(3){
+                        justify-content: flex-start;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width:768px){
+    .blogPageDashboard{
+        padding: 20px;
+    }
+}
+
+
+
+.innerBlog{
+    padding: 40px 50px;
+    max-height: 85vh;
+    overflow-y: auto;
+    .container-fluid{
+        border: 1px solid $primary;
+        background-color: $tertiary;
+        padding: 40px 30px;
+        .row{
+            .col-lg-8{
+                h2{
+                    font-size: 40px;
+                    font-weight: 700;
+                    color: $primary;
+                }
+                p{
+                    font-size: 16px;
+                    color: $primary;
+                }
+            }
+        }
+        .blogContext{
+            margin-top: 20px;
+            .row{
+                form{
+                    display: flex;
+                    column-gap: 3vw;
+                    .col-lg-8{
+                        .mb-3{
+                            label{
+                                font-size: 18px;
+                                font-weight: 700;
+                                color: $primary;
+                                padding-left: 10px;
+                            }
+                            input{}
+                            textarea{
+                                height: 300px;
+                                max-height: 300px;
+                                overflow-wrap: anywhere;
+                                overflow-y: auto;
+                            }
+                        }
+                    }
+                    .col-lg-3{
+                        display: flex;
+                        flex-direction: column;
+                        row-gap: 20px;
+                        .imageUploadBox{
+                            border: 1px solid rgba(0, 0, 0, 0.25);
+                            background: #F5F5F5;
+                            h5{
+                                font-size: 18px;
+                                font-weight: 700;
+                                color: $primary;
+                                padding: 20px;
+                                width: 100%;
+                                border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+                            }
+                            .preview{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                img{
+                                    width: 70%;
+                                    height: 100px;
+                                    object-fit: cover;
+                                    object-position: top;
+                                }
+                            }
+                            input{}
+                            label.btn{
+                                // width: 125px;
+                                margin: 20px 20px 20px 60%;
+                                padding: 10px 30px;
+                                background-color: $primary;
+                                border: 1px solid $primary;
+                                border-radius: 0;
+                                color: $tertiary;
+                                font-weight: 700;
+                            }
+                        }
+                        .publishBox{
+                            border: 1px solid rgba(0, 0, 0, 0.25);
+                            background: #F5F5F5;
+                            h5{
+                                font-size: 18px;
+                                font-weight: 700;
+                                color: $primary;
+                                padding: 20px;
+                                width: 100%;
+                                margin: 0;
+                                // border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+                            }
+                            hr{
+                                margin: 0;
+                            }
+                            button.btn{
+                                margin: 20px 20px 20px 60%;
+                                padding: 10px 30px;
+                                background-color: $primary;
+                                border: 1px solid $primary;
+                                border-radius: 0;
+                                color: $tertiary;
+                                font-weight: 700;
+                            }
+                        }
+                        .categoryBox{
+                            border: 1px solid rgba(0, 0, 0, 0.25);
+                            background: #F5F5F5;
+                            h5{
+                                font-size: 18px;
+                                font-weight: 700;
+                                color: $primary;
+                                padding: 20px;
+                                width: 100%;
+                                margin: 0;
+                                // border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+                            }
+                            hr{
+                                margin: 0;
+                            }
+                            .categoryDiv{
+                                height: 170px;
+                                overflow-y: scroll;
+                                overflow-x: hidden;
+                            }
+                            .form-check{
+                                padding-top: 10px;
+                                padding-left: 40px;
+                                display: flex;
+                                align-items: center;
+                                input{
+                                    width: 20px;
+                                    height: 20px;
+                                }
+                                label{
+                                    height: 20px;
+                                    padding-left: 10px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media(max-width:768px){
+    .innerBlog{
+        padding: 20px;
+        .container-fluid{
+            .blogContext{
+                .row{
+                    form{
+                        flex-wrap: wrap;
+                        .col-lg-8{
+                            width: 100%;
+                        }
+                        .col-lg-3{
+                            width: 100%;
+                            .imageUploadBox{
+                                label{
+                                    margin: 10px 10px 10px 35vw !important;
+                                }
+                            }
+                            .publishBox{
+                                button{
+                                    margin: 10px 10px 10px 35vw !important;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

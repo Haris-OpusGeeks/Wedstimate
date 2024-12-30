@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400..800&display=swap');
+@font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Book.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Heavy.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Medium.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Roman.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+
+
+$primary : #023866;
+$secondary: #000;
+$tertiary: #fff;
+
+
+body, html{
+    font-family: 'Avenir', sans-serif !important;
+    overflow-x: hidden;
+}
+.sidebar{
+    position: fixed;
+    height: 100vh;
+    background-color: $primary;
+    width: 16%;
+    padding: 100px 30px;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    align-items: center;
+    .logoDiv{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 100px;
+        img{}
+    }
+    .sidebarMenu{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        .nav-pills{
+            row-gap: 45px;
+            .nav-link{
+                text-align: left;
+                background-color: transparent;
+                font-size: 16px;
+                font-weight: 600;
+                color: $tertiary;
+                opacity: 0.5;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                svg{
+                    margin-right: 15px;
+                }
+                &:hover{
+                    opacity: 1;
+                }
+                &.active{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .logoutBtn{
+        margin-top: auto;
+        width: 100%;
+        padding-left: 20px;
+        .btn{
+            text-align: left;
+            border: none;
+            background-color: transparent;
+            font-size: 16px;
+            font-weight: 600;
+            color: $tertiary;
+            opacity: 1;
+            padding: 0;
+            svg{
+                margin-right: 15px;
+            }
+        }
+    }
+}
+@media(max-width:768px){
+    .offcanvas{
+        background-color: $primary !important;
+        .offcanvas-header{
+            padding-top: 20px;
+            padding-left: 20px;
+            a{
+                img{}
+            }
+            button.btn{
+            }
+            .btn-close{
+                filter: invert(100%);
+            }
+        }
+        .offcanvas-body{
+            .sidebarMenu{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                padding-left: 20px;
+                .nav-pills{
+                    row-gap: 45px;
+                    .nav-link{
+                        text-align: left;
+                        background-color: transparent;
+                        font-size: 16px;
+                        font-weight: 600;
+                        color: $tertiary;
+                        opacity: 0.5;
+                        padding: 0;
+                        display: flex;
+                        align-items: center;
+                        svg{
+                            margin-right: 15px;
+                        }
+                        &:hover{
+                            opacity: 1;
+                        }
+                        &.active{
+                            opacity: 1;
+                        }
+                    }
+                }
+            }
+            .logoutBtn{
+                margin-top: 30%;
+                width: 100%;
+                padding-left: 20px;
+                .btn{
+                    text-align: left;
+                    border: none;
+                    background-color: transparent;
+                    font-size: 16px;
+                    font-weight: 600;
+                    color: $tertiary;
+                    opacity: 1;
+                    padding: 0;
+                    svg{
+                        margin-right: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

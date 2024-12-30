@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400..800&display=swap');
+@font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Book.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Heavy.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Medium.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'Avenir';
+    src: url('../public/Avenir/Avenir-Roman.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+  }
+  
+body, html{
+    font-family: 'Avenir', sans-serif !important;
+    overflow-x: hidden;
+}
+
+// login page css 
+
+.loginPage{
+    height: 100vh;
+    background-color: #efefef;
+    .container-fluid{
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .loginDiv{
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+            width: 400px;
+            .header{
+                text-align: center;
+                background-color: #417690;
+                h2{
+                    color: #fff;
+                    font-size: 24px;
+                }
+            }
+            .login{
+                padding: 50px 20px;
+                form{
+                    display: flex;
+                    flex-direction: column;
+                    label{
+                        font-size: 16px;
+                        padding: 10px 0 5px;
+                    }
+                    input{
+                        height: 30px;
+                        margin: 5px 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// dashboard css 
+.dashboard{
+    background-color: #F5F5F5;
+    height: 100vh;
+}
+@media(max-width:768px){
+  .dashboard{
+    height: 100%;
+    .row{
+      // flex-direction: row-reverse;
+      .col-lg-2{}
+      .col-lg-10{
+        width: 100% !important;
+      }
+    }
+  }
+}

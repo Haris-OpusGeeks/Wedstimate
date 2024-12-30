@@ -1,0 +1,227 @@
+$primary : #023866;
+$secondary: #000;
+$tertiary: #fff;
+
+.vendorsPage{
+  padding: 40px 50px;
+  max-height: 85vh;
+  overflow-y: auto;
+  .container-fluid{
+    border: 1px solid $primary;
+    background-color: $tertiary;
+    padding: 40px 30px;
+    .row{
+      .col-lg-8{
+        h2{
+          font-size: 40px;
+          font-weight: 700;
+          color: $primary;
+        }
+        p{
+          font-size: 16px;
+          color: $primary;
+        }
+      }
+      .col-lg-4{
+        .d-flex{
+          height: 100%;
+          padding-bottom: 20px;
+          justify-content: flex-end;
+          align-items: flex-end;
+          .btn{
+            width: 125px;
+            background-color: $primary;
+            border: 1px solid $primary;
+            border-radius: 0;
+            color: $tertiary;
+            font-weight: 700;
+          }
+          .dropdown{
+            .btn-secondary{
+              background-color: transparent;
+              color: $primary;
+              &::after{
+                display: none;
+              }
+              svg{
+                margin-left: 10px;
+              }
+            }
+            .dropdown-menu{
+              padding: 20px 10px;
+              border: 2px solid $primary;
+              li{
+                padding: 10px 0 0 0;
+                .dropdown-item{
+                  padding: 5px 0;
+                  // padding: 0;
+                  border-right: 2px solid $primary;
+                  &::after{
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .VendorFormArea{
+      margin-top: 30px;
+      height: 60vh;
+      max-height: 600px;
+      overflow-y: scroll;
+      form{
+        .d-flex{
+          h2{}
+          &:first-child{
+            @media (max-width: 991px) {
+              flex-direction: column;
+            }
+            .mb-3{
+              width: 32%;
+              @media (max-width: 991px) {
+                width: 80%;
+              }
+              input{}
+            }
+          }
+          &:nth-child(2){
+            @media (max-width: 991px) {
+              //flex-direction: column;
+            }
+            .col-lg-4{
+              width: 10%;
+              margin-right: 10px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              padding: 10px;
+              border-radius: 25px;
+              @media (max-width: 991px) {
+                width: 35%;
+              }
+              .imageBox{
+                width: 100px;
+                padding-bottom: 10px;
+                img{
+                  width: 100%;
+                }
+              }
+              .textBox{
+                text-align: center;
+                h5{
+                  margin: 0;
+                }
+              }
+              &.selected{
+                background-color: $primary;
+                .imageBox{
+                  filter: brightness(1000%);
+                }
+                .textBox{
+                  h5{
+                    color:$tertiary;
+                  }
+                }
+              }
+            }
+          }
+          &:nth-child(3){
+            @media (max-width: 991px) {
+              flex-direction: column;
+            }
+            .mb-3{
+              width: 32%;
+              @media (max-width: 991px) {
+                width: 80%;
+              }
+              input{}
+              .form-group{
+                .image-grid{
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 10px;
+                  .image-container{
+                    width: 20%;
+                    position: relative;
+                    @media (max-width: 991px) {
+                      width: 80% !important;
+                      flex-wrap: wrap;
+                    }
+                    img{
+                      width: 100%;
+                      object-fit: cover;
+                      height: 120px;
+                    }
+                    button{
+                      position: absolute;
+                      z-index: 1;
+                      right: 2%;
+                      top: 2%;
+                      font-size: 25px;
+                      line-height: 20px;
+                      border-radius: 50%;
+                      padding: 2px 4px !important;
+                      color: $primary;
+                      background-color: $tertiary;
+                      border: none;
+                    }
+                  }
+                }
+                .image-upload-box{
+                  width: 20%;
+                  height: 120px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  background-color: rgba(5, 44, 101, 0.23);
+                  @media (max-width: 991px) {
+                    width: 80%;
+                    flex-wrap: wrap;
+                  }
+                  label{
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 50px;
+                  }
+                  input{}
+                }
+              }
+              textarea{
+                width: 100%;
+              }
+              .categorySec{
+                width: 100%;
+                h4{}
+                .pillsContainer{
+                  row-gap: 10px;
+                  .pill{}
+                }
+              }
+              &.w-100{
+                width: 100%;
+              }
+            }
+          }
+        }
+        .btn{
+          background-color: $primary;
+          color: $tertiary;
+          padding: 12px 35px;
+          border-radius: 0;
+        }
+      }
+    }
+  }
+}
+
+@media(max-width:768px){
+  .vendorsPage{
+    padding: 10px !important;
+  }
+}

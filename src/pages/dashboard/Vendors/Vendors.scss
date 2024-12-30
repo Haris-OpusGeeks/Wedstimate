@@ -1,0 +1,127 @@
+$primary : #023866;
+$secondary: #000;
+$tertiary: #fff;
+
+.vendorsPage{
+    padding: 40px 50px;
+    .container-fluid{
+        border: 1px solid $primary;
+        background-color: $tertiary;
+        padding: 40px 30px;
+        .row{
+            .col-lg-6{
+                h2{
+                    font-size: 40px;
+                    font-weight: 700;
+                    color: $primary;
+                }
+                p{
+                    font-size: 16px;
+                    color: $primary;
+                }
+            }
+            .col-lg-6{
+                .d-flex{
+                    height: 100%;
+                    padding-bottom: 20px;
+                    justify-content: flex-end;
+                    align-items: flex-end;
+                    form{
+                        display: none;
+                        &.show{
+                            display: flex;
+                        }
+                    }
+                    .btn{
+                        width: 125px;
+                        background-color: $primary;
+                        border: 1px solid $primary;
+                        border-radius: 0;
+                        color: $tertiary;
+                        font-weight: 700;
+                    }
+                    .dropdown{
+                        .btn-secondary{
+                            background-color: transparent;
+                            color: $primary;
+                            &::after{
+                                display: none;
+                            }
+                            svg{
+                                margin-left: 10px;
+                            }
+                        }
+                        .dropdown-menu{
+                            padding: 20px 10px;
+                            border: 2px solid $primary;
+                            li{
+                                padding: 10px 0 0 0;
+                                .dropdown-item{
+                                    padding: 5px 0;
+                                    // padding: 0;
+                                    border-right: 2px solid $primary;
+                                    &::after{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .listingArea{
+            margin-top: 30px;
+            #vendorListing{
+                width: 100% !important;
+                thead{
+                    border-bottom: 1px solid #0238669E;
+                    // .dt-scroll-sizing{
+                    //     height: 0 !important;
+                    //     overflow: hidden !important;
+                    // }
+                    tr{
+                        th{
+                            padding-top: 20px;
+                            padding-bottom: 20px;
+                            font-size: 18px;
+                            font-weight: 600;
+                            text-transform: capitalize;
+                            color: $primary;
+                            text-align: center;
+                        }
+                    }
+                }
+                tbody{
+                    tr{
+                        td{
+                            color: $primary;
+                            text-align: center;
+                            padding: 15px 0;
+                            &.btn-group{
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 15px;
+                                .btn{
+                                    width: 40px !important;
+                                    height: 40px;
+                                    flex: none;
+                                    background-color: #F5F5F5;
+                                    border-radius: 50%;
+                                    svg{}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media(max-width:768px){
+    .vendorsPage{
+        padding: 10px !important;
+    }
+}
