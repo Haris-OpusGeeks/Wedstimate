@@ -44,26 +44,6 @@ const ImageSlider = ({ images }) => (
     )
 );
 
-const ReviewsList = ({ reviews }) => (
-    reviews?.length > 0 && (
-        <div className="reviews">
-          <h2>Reviews</h2>
-          {reviews.map((review) => (
-              <div className="d-flex" key={review.id}>
-                <div className="imageBox">
-                  <img src={review.coupleImageUrl ? `${base_url}/${review.coupleImageUrl}` : defaultImg} alt="Couple" />
-                </div>
-                <div className="contentBox">
-                  <h3>{review.coupleName}</h3>
-                  <RatingDynamic rating={review.rating} />
-                  <p>{review.review}</p>
-                </div>
-              </div>
-          ))}
-          <hr />
-        </div>
-    )
-);
 
 
 const DynamicModal = ({ show, onClose, buttonText, buttonAction, id }) => {
@@ -85,9 +65,9 @@ const DynamicModal = ({ show, onClose, buttonText, buttonAction, id }) => {
       });
       if (localStorage.getItem('user')) {
         dispatch(getVendorsReviews(id)).then((response) => {
-          setReviews(response);
+          setReviews(response.payload);
         });
-        console.log(reviews);
+        console.log("reviews",reviews);
       }
     }
   }, [id, dispatch]);
@@ -109,6 +89,26 @@ const DynamicModal = ({ show, onClose, buttonText, buttonAction, id }) => {
         </MapContainer>
     );
   };
+  const ReviewsList = ({ reviews }) => (
+    reviews?.length > 0 && (
+        <div className="reviews">
+          <h2>Reviews</h2>
+          {reviews.map((review) => (
+              <div className="d-flex" key={review.id}>
+                <div className="imageBox">
+                  <img src={review.coupleImageUrl ? `${base_url}/${review.coupleImageUrl}` : defaultImg} alt="Couple" />
+                </div>
+                <div className="contentBox">
+                  <h3>{review.coupleName}</h3>
+                  <RatingDynamic rating={review.rating} />
+                  <p>{review.review}</p>
+                </div>
+              </div>
+          ))}
+          <hr />
+        </div>
+    )
+);
 
 
   const handleShowToast = useCallback((message) => {
