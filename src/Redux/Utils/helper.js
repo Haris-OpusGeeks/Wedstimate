@@ -32,6 +32,7 @@ export const fetchApi = async ({
     // headers['tenant'] = 'root';
   } else {
     headers['Content-Type'] = 'application/json';
+    headers['tenant'] = 'root';
     headers['Accept'] = 'application/json';
     headers['Cache-Control']= 'no-cache, no-store, must-revalidate';
   }
