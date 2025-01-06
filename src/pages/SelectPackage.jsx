@@ -55,7 +55,10 @@ export default function SelectPackage() {
                             onChange={() => handleSelection(plan.id)}
                         />
                         <label className="form-check-label" htmlFor={plan.id}>
-                            {plan.name} - ${plan.price} for {plan.noOfLeads} leads
+                        
+                        {plan.id === "58717190-5963-447e-9af8-551cecc33f11"
+                        ? `${plan.name} - $${plan.price} for 5 guaranteed leads and access to all couples that viewed your profile.`
+                        : `${plan.name} - $${plan.price} for ${plan.noOfLeads} leads`}
                         </label>
                     </div>
                 ));
