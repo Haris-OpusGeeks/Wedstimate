@@ -11,19 +11,25 @@ import sally from '../assets/website/SallySparksDealphoto.png';
 import urban from '../assets/website/urbanworldwide_deal.png';
 import spring from '../assets/website/CrystalSpringsCateringDeal.png';
 import { Pagination, Autoplay } from 'swiper/modules';
-import blog1 from '../assets/website/blog1.webp';
-import blog2 from '../assets/website/blog2.webp';
-import blog3 from '../assets/website/blog3.webp';
-import blog4 from '../assets/website/blog4.webp';
+import blog1 from '../assets/website/blog1.jpg';
+import blog2 from '../assets/website/blog2.jpg';
+import blog3 from '../assets/website/blog3.png';
+import blog4 from '../assets/website/blog4.jpeg';
 import '../App.scss';
 import '../assets/theme.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useParams } from 'react-router-dom';
 import { getCategoryList } from '../Redux/Reducers/categorySlice';
 import { useDispatch } from 'react-redux';
 import useCategorySelector from '../Redux/Selectors/useCategorySelector';
 import { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup'
+
+
+import useBlogSelector from '../Redux/Selectors/useBlogSelector';
+import {base_url, convertUtcToLocalTime, createExcerpt} from '../Redux/Utils/helper';
+import {getListOfBlogs} from "../Redux/Reducers/blogSlice.js";
+import defaultImg from '../assets/default.jpg';
 
 export default function Homepage() {
 	const {categoryItem : {categories, isLoading}} = useCategorySelector();
@@ -53,6 +59,39 @@ export default function Homepage() {
 			navigate(`/categories/build-wedding/category/${values.category}/${values.zipCode}`);
         },
     });
+
+
+	// Blog Render API code
+
+	const {blogs, isError, isSuccess, errorMessage} = useBlogSelector();
+	const { id } = useParams(); // Extract id from the URL
+	// const categories = JSON.parse(localStorage.getItem("vendorCategory"));
+
+	useEffect(()=>{
+		dispatch(getListOfBlogs(id));
+		console.log(id);
+		console.log(blogs);
+		if (isSuccess) {
+			console.log(blogs);
+		} else if (isError) {
+			console.log(errorMessage);
+		}
+	}, [dispatch, id]);
+
+	const onBlogClick =  (blog) => {
+		return async (e) => {
+			e.preventDefault();
+			if (localStorage.getItem('singleBlog')) {
+				await localStorage.removeItem('singleBlog');
+				await localStorage.setItem('singleBlog', JSON.stringify(blog));
+				window.open(`/blog/page/${blog.id}`, '_blank');
+			} else {
+				await localStorage.setItem('singleBlog', JSON.stringify(blog));
+				window.open(`/blog/page/${blog.id}`, '_blank');
+			}
+		}
+	}
+
   return (
     <>
         <main>
@@ -354,54 +393,25 @@ export default function Homepage() {
 				<p>Wedding news, tips, and trends!</p>
 			</div>
 			<div className="row">
-				<div className="col-lg-6">
-					<Link to={'/blog/page'} className="box_news" target='_blank'>
-						<figure><img src={blog1} alt=""/>
+
+			{blogs.length > 0 ? (
+				blogs.slice(-4).reverse().map((blog) => (
+				<div className="col-lg-6" key={blog.id}>
+					<a onClick={onBlogClick(blog)} className="box_news" target='_blank'>
+						<figure><img src={blog.imageUrl ? `${base_url}/${blog.imageUrl}` : defaultImg} alt={blog.title}/>
 						</figure>
 						<ul>
-							{/* <li>Restaurants</li> */}
-							<li>20.11.2017</li>
+							<li>{convertUtcToLocalTime(blog.createdDate)}</li>
 						</ul>
-						<h4>Wedstimate's Top 10 Wedding Planning Tips</h4>
-						<p>Planning a wedding can be both exciting and overwhelming for couples. To help you navigate through the intricacies of wedding planning,...</p>
-					</Link>
+						<h4>{blog.title}</h4>
+						<p>{createExcerpt(blog.description, 100)}</p>
+					</a>
 				</div>
-				<div className="col-lg-6">
-					<Link to={'/blog/page'} className="box_news" target='_blank'>
-						<figure><img src={blog2} alt=""/>
-						</figure>
-						<ul>
-							{/* <li>Shops</li> */}
-							<li>20.11.2017</li>
-						</ul>
-						<h4>Discover the Leads You've Gotten this Holiday Season!</h4>
-						<p>Wishing you a season filled with joy, prosperity, and lots of happy moments! 🎄 As the year comes to a close, we wanted to express our...</p>
-					</Link>
-				</div>
-				<div className="col-lg-6">
-					<Link to={'/blog/page'} className="box_news" target='_blank'>
-						<figure><img src={blog3} alt=""/>
-						</figure>
-						<ul>
-							{/* <li>Shops</li> */}
-							<li>20.11.2017</li>
-						</ul>
-						<h4>How to Choose the Right Wedding Dance Package for Your Needs</h4>
-						<p>Your wedding day is one of the most important and memorable occasions of your life. Every aspect, including the wedding dance, plays a...</p>
-					</Link>
-				</div>
-				<div className="col-lg-6">
-					<Link to={'/blog/page'} className="box_news" target='_blank'>
-						<figure><img src={blog4} alt=""/>
-						</figure>
-						<ul>
-							{/* <li>Bars</li> */}
-							<li>20.11.2017</li>
-						</ul>
-						<h4>2023 Wedding App of the Year!</h4>
-						<p>Wedstimate Named 2023 Wedding App of the Year by LuxLife Magazine Oakland, CA, June 9, 2023 - Wedstimate, a leading wedding planning app,...</p>
-					</Link>
-				</div>
+				))
+			) : (
+				<p>No blogs available.</p>
+			)}
+			
 			</div>
 			<p className="btn_home_align"><Link to={'/blog'} className="btn_1 rounded" target='_blank'>View all Blogs</Link></p>
 		</div>

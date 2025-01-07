@@ -153,7 +153,8 @@ export default function Contact() {
 						<div className="box_contacts">
 							<i className="ti-home"></i>
 							<h2>Address</h2>
-							<a href="#0">1150 Clay Street, Unit 1404 <br/>Oakland, CA 94607</a>
+							<a href="#0">238 13th Street Unit 528
+							<br/>Oakland, CA 94612</a>
 						</div>
 						<div className="box_contacts">
 							<i className="ti-thumb-up"></i>

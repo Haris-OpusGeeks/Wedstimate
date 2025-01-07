@@ -2935,6 +2935,7 @@ a.box_news {
     min-height: 150px;
     font-family: 'Avenir', sans-serif !important;
     text-decoration: none !important;
+    cursor: pointer;
 }
 
 @media (max-width: 767px) {
@@ -2966,7 +2967,8 @@ a.box_news figure {
 
 a.box_news figure img {
     width: 250px;
-    height: auto;
+    height: 135px;
+    object-fit: cover;
     position: absolute;
     left: 50%;
     top: 50%;

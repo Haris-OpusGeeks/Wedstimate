@@ -31,15 +31,15 @@ export default function FooterHome() {
                   </li>
                   {/* <li><a href="#0">Faq</a></li> */}
                   {/* <li><a href="#0">Help</a></li> */}
-                  <li>
+                  {/* <li>
                     <a href="#">My account</a>
                   </li>
                   <li>
                     <a href="#">Create account</a>
-                  </li>
+                  </li> */}
                   <li>
                     <Link to={"/contact-us"} >
-                      Contacts
+                      Contact
                     </Link>
                   </li>
                 </ul>
@@ -64,12 +64,12 @@ export default function FooterHome() {
             <div className="col-lg-5 col-md-6 col-sm-6">
               <div className="row">
                 <div className="col-lg-4">
-                  <h3>Contacts</h3>
+                  <h3>Contact</h3>
                   <div className="">
                     <ul className="contacts">
                       <li>
-                        <i className="bi bi-house-door"></i>1150 Clay Street,
-                        Unit 1404 Oakland, CA 94607
+                        <i className="bi bi-house-door"></i>238 13th Street Unit 
+                        528 Oakland, CA 94612
                       </li>
                       <li>
                         <i className="bi bi-headset"></i>(415) 656-5535
