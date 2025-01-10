@@ -6772,16 +6772,25 @@ iframe#map_iframe {
 }
 
 .box_contacts {
+    
+    padding: 0px 15px;
+    
+    margin-bottom: 15px;
+    
+}
+.box_contacts .box-inner{
+    padding:25px ;
     background-color: #fff;
-    padding: 25px;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     border-radius: 3px;
-    margin-bottom: 15px;
     text-align: center;
-    font-size: 15px;
     font-size: 0.9375rem;
+    height: 220px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .box_contacts h2 {

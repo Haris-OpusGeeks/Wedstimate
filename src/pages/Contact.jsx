@@ -45,7 +45,7 @@ export default function Contact() {
 		<main className="contactPage">
 			<div className="container margin_60_35">
 				<div className="row justify-content-center">
-					<div className="col-xl-5 col-lg-6 pr-xl-5">
+					{/* <div className="col-xl-5 col-lg-6 pr-xl-5">
 						<div className="main_title_3">
 							<span></span>
 							<h2>Send us a message</h2>
@@ -143,35 +143,41 @@ export default function Contact() {
 								<input type="submit" className="btn_1 rounded" value="Submit" />
 							</p>
 						</form>
-					</div>
-					<div className="col-xl-5 col-lg-6 pl-xl-5">
-						<div className="box_contacts">
-							<i className="ti-support"></i>
-							<h2>Need Help?</h2>
-							<a href="tel:(415) 656-5535">(415) 656-5535</a> - <a href="mailto:info@wedstimate.com">info@wedstimate.com</a>
-						</div>
-						<div className="box_contacts">
-							<i className="ti-home"></i>
-							<h2>Address</h2>
-							<a href="#0">238 13th Street Unit 528
-							<br/>Oakland, CA 94612</a>
-						</div>
-						<div className="box_contacts">
-							<i className="ti-thumb-up"></i>
-							<h2>Follow Us</h2>
-							<div className="d-flex">
-								<a href="https://www.facebook.com/Wedstimate" target='_blank'>
-									<i className="ti-facebook"></i>
-								</a>
-								<a href="https://www.instagram.com/wedstimate/" target='_blank'>
-									<i className="ti-instagram"></i>
-								</a>
-								<a href="https://twitter.com/wedstimate" target='_blank'>
-									<i className="ti-twitter"></i>
-								</a>
+					</div> */}
+					{/* <div className="col-xl-10 col-lg-12 pl-xl-10"> */}
+						<div className="box_contacts col-md-4 ">
+							<div class="box-inner">
+								<i className="ti-support"></i>
+								<h2>Need Help?</h2>
+								<a href="tel:(415) 656-5535">(415) 656-5535</a> - <a href="mailto:info@wedstimate.com">info@wedstimate.com</a>
 							</div>
 						</div>
-					</div>
+						<div className="box_contacts  col-md-4">
+							<div class="box-inner">
+								<i className="ti-home"></i>
+								<h2>Address</h2>
+								<a href="#0">238 13th Street Unit 528
+								<br/>Oakland, CA 94612</a>
+							</div>
+						</div>
+						<div className="box_contacts  col-md-4">
+							<div class="box-inner">
+								<i className="ti-thumb-up"></i>
+								<h2>Follow Us</h2>
+								<div className="d-flex">
+									<a href="https://www.facebook.com/Wedstimate" target='_blank'>
+										<i className="ti-facebook"></i>
+									</a>
+									<a href="https://www.instagram.com/wedstimate/" target='_blank'>
+										<i className="ti-instagram"></i>
+									</a>
+									<a href="https://twitter.com/wedstimate" target='_blank'>
+										<i className="ti-twitter"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					{/* </div> */}
 				</div>
 			</div>
 		</main>
