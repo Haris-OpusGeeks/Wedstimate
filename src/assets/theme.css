@@ -10340,3 +10340,16 @@ article.blog .post_info ul li:last-child i {
         }
     }
 }
+
+
+/* Privacy Page CSS */
+
+.privacyContent{padding: 160px 8vw 80px !important;}
+.privacyContent h2 {font-size: 40px !important; color:#17365d; border-bottom :2px solid #4f81bd; padding-bottom: 20px; padding: 15px 0px;
+}
+.privacyContent h3 {color:#4f81bd; font-size: 30px !important ; font-weight: 700; padding: 10px 0px;}
+.privacyContent h4 {color:#4f81bd; font-size: 24px !important ; font-weight: 700; padding: 10px 0px;}
+.privacyContent h5 {font-size: 22px; font-weight: 700; padding-top: 15px;}
+.privacyContent p {font-size: 20px; margin-bottom: 15px !important; line-height: 34px;}
+.privacyContent p strong{font-size: 20px; margin-bottom: 0px !important; line-height: 34px;font-weight: 700;color: #000;}
+.privacyContent ul li {font-size: 20px; margin-bottom: 5px !important; line-height: 34px; display: list-item; list-style: disc;}
