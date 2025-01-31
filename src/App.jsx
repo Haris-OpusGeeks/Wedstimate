@@ -27,6 +27,7 @@ import CreateDeal from './pages/CreateDeal';
 import Leads from './pages/Leads';
 import DashboardProtectedLogin from "./components/dashboard/DashboardProtectedLogin.jsx";
 import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
+import DeleteAccount from "./pages/DeleteAccount.jsx";
 import CreateEvent from "./pages/CreateEvent.jsx";
 import TermsOfService from "./pages/TermsOfService.jsx";
 
@@ -167,6 +168,12 @@ function App() {
                     <>
                         <HeaderHomeScrolled/>
                         <TermsOfService/>
+                    </>
+                }/>
+                <Route path='/delete-account' element={
+                    <>
+                        <HeaderHomeScrolled/>
+                        <DeleteAccount/>
                     </>
                 }/>
                 <Route path='/couple-login' element={
