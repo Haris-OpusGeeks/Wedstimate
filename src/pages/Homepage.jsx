@@ -1,5 +1,6 @@
 import { Swiper, SwiperSlide } from 'swiper/react'
-import vendor1 from '../assets/website/ceremonyvendor.png';
+// import vendor1 from '../assets/website/ceremonyvendor.png';
+import vendor1 from '../assets/website/sweettooth.png';
 import vendor2 from '../assets/website/ceremonyvendor1.jpeg';
 import vendor3 from '../assets/website/ceremonyvendor2.png';
 import vendor4 from '../assets/website/ceremonyvendor4.png';
@@ -155,12 +156,22 @@ export default function Homepage() {
 					<p>Find and book the best wedding vendors using Wedstimate.com. Here are just a few of our favorites.</p>
 				</div>
 				<div className="row">
-					<div className="col-lg-4 col-md-6">
+					{/* <div className="col-lg-4 col-md-6">
 						<a href="https://www.rassasy.com/" className="grid_item" target='_blank'>
 							<figure>
 								<img src={vendor1} alt=""/>
 								<div className="info">
 									<h3>Rassasy Cakes</h3>
+								</div>
+							</figure>
+						</a>
+					</div> */}
+					<div className="col-lg-4 col-md-6">
+						<a href="https://www.facebook.com/sweettoothsensations.cakes/" className="grid_item" target='_blank'>
+							<figure>
+								<img src={vendor1} alt=""/>
+								<div className="info">
+									<h3>Sweet Tooth Sensations</h3>
 								</div>
 							</figure>
 						</a>
@@ -255,12 +266,12 @@ export default function Homepage() {
 				<SwiperSlide>
 					<div className="strip grid">
 						<figure>
-							{/* <a href="detail-restaurant.html" className="wish_bt"></a> */}
-							<a href="detail-restaurant.html" target='_blank'><img src={kevin} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
+							{/* <a href="/categories/build-wedding" className="wish_bt"></a> */}
+							<a href="/categories/build-wedding" target='_blank'><img src={kevin} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
 							{/* <small>Restaurant</small> */}
 						</figure>
 						<div className="wrapper">
-							<h3><a href="detail-restaurant.html" target='_blank'>Kevin Mccullough, Jazz Pianist</a></h3>
+							<h3><a href="/categories/build-wedding" target='_blank'>Kevin Mccullough, Jazz Pianist</a></h3>
 							<p>$100 OFF!</p>
 							{/* <a className="address" href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361">Get directions</a> */}
 						</div>
@@ -273,12 +284,12 @@ export default function Homepage() {
 				<SwiperSlide>
 					<div className="strip grid">
 						<figure>
-							{/* <a href="detail-restaurant.html" className="wish_bt"></a> */}
-							<a href="detail-restaurant.html" target='_blank'><img src={photbooth} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
+							{/* <a href="/categories/build-wedding" className="wish_bt"></a> */}
+							<a href="/categories/build-wedding" target='_blank'><img src={photbooth} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
 							{/* <small>Restaurant</small> */}
 						</figure>
 						<div className="wrapper">
-							<h3><a href="detail-restaurant.html" target='_blank'>Photobooth-Pixel</a></h3>
+							<h3><a href="/categories/build-wedding" target='_blank'>Photobooth-Pixel</a></h3>
 							<p>5% discount for Wedstimate couple</p>
 							{/* <a className="address" href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361">Get directions</a> */}
 						</div>
@@ -291,12 +302,12 @@ export default function Homepage() {
 				<SwiperSlide>
 					<div className="strip grid">
 						<figure>
-							{/* <a href="detail-restaurant.html" className="wish_bt"></a> */}
-							<a href="detail-restaurant.html" target='_blank'><img src={spring} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
+							{/* <a href="/categories/build-wedding" className="wish_bt"></a> */}
+							<a href="/categories/build-wedding" target='_blank'><img src={spring} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
 							{/* <small>Restaurant</small> */}
 						</figure>
 						<div className="wrapper">
-							<h3><a href="detail-restaurant.html" target='_blank'>Crystal Springs Catering</a></h3>
+							<h3><a href="/categories/build-wedding" target='_blank'>Crystal Springs Catering</a></h3>
 							<p>10% Discount</p>
 							{/* <a className="address" href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361">Get directions</a> */}
 						</div>
@@ -309,12 +320,12 @@ export default function Homepage() {
 				<SwiperSlide>
 					<div className="strip grid">
 						<figure>
-							{/* <a href="detail-restaurant.html" className="wish_bt"></a> */}
-							<a href="detail-restaurant.html" target='_blank'><img src={sally} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
+							{/* <a href="/categories/build-wedding" className="wish_bt"></a> */}
+							<a href="/categories/build-wedding" target='_blank'><img src={sally} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
 							{/* <small>Restaurant</small> */}
 						</figure>
 						<div className="wrapper">
-							<h3><a href="detail-restaurant.html" target='_blank'>Sally Sparks</a></h3>
+							<h3><a href="/categories/build-wedding" target='_blank'>Sally Sparks</a></h3>
 							<p>3% Discount for Wedstimate couple</p>
 							{/* <a className="address" href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361">Get directions</a> */}
 						</div>
@@ -327,12 +338,12 @@ export default function Homepage() {
 				<SwiperSlide>
 					<div className="strip grid">
 						<figure>
-							{/* <a href="detail-restaurant.html" className="wish_bt"></a> */}
-							<a href="detail-restaurant.html" target='_blank'><img src={urban} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
+							{/* <a href="/categories/build-wedding" className="wish_bt"></a> */}
+							<a href="/categories/build-wedding" target='_blank'><img src={urban} className="img-fluid" alt="" width="400" height="266"/><div className="read_more"><span>Read more</span></div></a>
 							{/* <small>Restaurant</small> */}
 						</figure>
 						<div className="wrapper">
-							<h3><a href="detail-restaurant.html" target='_blank'>UrbanBCN Worldwide</a></h3>
+							<h3><a href="/categories/build-wedding" target='_blank'>UrbanBCN Worldwide</a></h3>
 							<p>10% Discount!</p>
 							{/* <a className="address" href="https://www.google.com/maps/dir//Assistance+%E2%80%93+H%C3%B4pitaux+De+Paris,+3+Avenue+Victoria,+75004+Paris,+Francia/@48.8606548,2.3348734,14z/data=!4m15!1m6!3m5!1s0x47e66e1de36f4147:0xb6615b4092e0351f!2sAssistance+Publique+-+H%C3%B4pitaux+de+Paris+(AP-HP)+-+Si%C3%A8ge!8m2!3d48.8568376!4d2.3504305!4m7!1m0!1m5!1m1!1s0x47e67031f8c20147:0xa6a9af76b1e2d899!2m2!1d2.3504327!2d48.8568361">Get directions</a> */}
 						</div>
