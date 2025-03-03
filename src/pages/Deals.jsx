@@ -130,8 +130,8 @@ export default function Deals() {
       <div className="dealsPage">
         <DynamicToast show={showToast} message={message} />
         <div className="container-fluid">
-          <h2>Find your deals</h2>
-          <p>Select from the varieties of packages</p>
+          <h2>View your deals</h2>
+          <p>These are the deals you created.</p>
           <div className="row">
               {filteredDeals.length > 0 ? (
                   filteredDeals.map((deal) => (

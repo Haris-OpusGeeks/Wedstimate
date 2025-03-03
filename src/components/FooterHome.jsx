@@ -93,7 +93,7 @@ export default function FooterHome() {
                   />
                 </div>
                 <div className="col-lg-2 appLinks">
-                  <a href="https://play.google.com/store/apps/details?id=com.rough_smoke_23947">
+                  <a target="_blank" href="https://play.google.com/store/apps/details?id=com.wedstimatemobileapp">
                     <img src={googleplay} alt="" width={150} />
                   </a>
                   <a href="https://apps.apple.com/us/app/wedstimate-wedding-planner/id1578772552">
