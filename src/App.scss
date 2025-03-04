@@ -877,7 +877,7 @@ footer{
                 }
                 .d-flex{
                     justify-content: center;
-                    column-gap: 5%;
+                    column-gap: 3%;
                 }
                 button{
                     margin-top: 20px;
@@ -893,7 +893,7 @@ footer{
                         padding: 10px 10px;
                         border: 1px solid $primary;
                         border-radius: 0;
-                        font-size: 14px;
+                        font-size: 12px;
                         margin-bottom: 20px;
                         &:hover{
                             background-color: $primary;
@@ -925,6 +925,8 @@ footer{
         }
     }
 }
+.deleBtn i{width: 35px; height: 39px; border: 1px solid #000; display: flex ; justify-content: center; align-items: center;transition: all 0.4s;}
+.deleBtn i:hover{background-color: #023866; color: #fff;}
 @media(max-width:768px){
     .dealsPage{
         .row{

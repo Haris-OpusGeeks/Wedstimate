@@ -59,6 +59,22 @@ export const createDeal = createAsyncThunk(
     }
   },
 );
+
+export const deleteDeal = createAsyncThunk(
+  'deleteDeal',
+  async (requestData, {dispatch}) => {
+    try {
+      const {status, data} = await dealServices.deleteDeal(requestData);
+      if (status === 200 || status === 201) {
+        onDone();
+        return data;
+      }
+    } catch (error) {
+      throw errorHandler(error, dispatch);
+    }
+  },
+);
+
 export const dealSlice = createSlice({
   name: 'dealSlice',
   initialState,

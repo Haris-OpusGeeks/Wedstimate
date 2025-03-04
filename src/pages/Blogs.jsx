@@ -8,6 +8,7 @@ import { getCategoryList } from '../Redux/Reducers/categorySlice';
 import {getListOfBlogs} from "../Redux/Reducers/blogSlice.js";
 import defaultImg from '../assets/default.jpg';
 
+
 export default function Blogs() {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -63,7 +64,12 @@ export default function Blogs() {
 								<div className="post_info">
 									<small>{blog.categoryName} - {convertUtcToLocalTime(blog.createdDate)}</small>
 									<h2><a onClick={onBlogClick(blog)}>{blog.title}</a></h2>
-									<p>{createExcerpt(blog.description, 100)}</p>
+									{/* <p>{createExcerpt(blog.description, 100)}</p> */}
+									<div
+                                        className="post-excerpt"
+                                        dangerouslySetInnerHTML={{ __html: blog.description }}
+                                    />
+									
 									<ul>
 									<li>
 										<div className="thumb"><img src={defaultImg} alt="" /></div> Admin
@@ -101,7 +107,10 @@ export default function Blogs() {
 									<a onClick={onBlogClick(blog)}><img src={blog.imageUrl ? `${base_url}/${blog.imageUrl}` : defaultImg} alt={blog.title}/></a>
 								</div>
 								<small>{blog.categoryName} - {convertUtcToLocalTime(blog.createdDate)}</small>
-								<h3><a onClick={onBlogClick(blog)}>{createExcerpt(blog.description, 50)}</a></h3>
+								<h3><a onClick={onBlogClick(blog)}><div
+                                        className="post-excerpt2"
+                                        dangerouslySetInnerHTML={{ __html: blog.description }}
+                                    /></a></h3>
 							</li>
 							))
 						): null}

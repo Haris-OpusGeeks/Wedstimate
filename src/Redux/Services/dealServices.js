@@ -29,6 +29,15 @@ class DealServices {
     });
     return response;
   };
+  deleteDeal = async data => {
+    const response = await fetchApi({
+      method: 'DELETE',
+      endPoint: `${endPoints.DEALS}/${data.id}`,
+      token: true,
+      data,
+    });
+    return response;
+  };
   getDealDetailsById = async id => {
     const response = await fetchApi({
       method: 'GET',
