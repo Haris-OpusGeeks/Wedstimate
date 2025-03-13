@@ -285,10 +285,10 @@ export default function VendorLogin() {
                                         </ul>
                                     </div>
                                     <div className="d-flex flex-column appLinks">
-                                        <a href="https://play.google.com/store/apps/details?id=com.rough_smoke_23947">
+                                        <a target="_blank" href="https://play.google.com/store/apps/details?id=com.wedstimatemobileapp">
                                             <img src={googleplay} alt="" width={150}/>
                                         </a>
-                                        <a href="https://apps.apple.com/us/app/wedstimate-wedding-planner/id1578772552">
+                                        <a target="_blank" href="https://apps.apple.com/us/app/wedstimate/id6712045315">
                                             <img src={applestore} alt="" width={150}/>
                                         </a>
                                     </div>
@@ -311,10 +311,10 @@ export default function VendorLogin() {
                                         </ul>
                                     </div>
                                     <div className="d-flex flex-column appLinks">
-                                        <a href="https://play.google.com/store/apps/details?id=com.rough_smoke_23947">
+                                        <a target="_blank" href="https://play.google.com/store/apps/details?id=com.wedstimatemobileapp">
                                             <img src={googleplay} alt="" width={150}/>
                                         </a>
-                                        <a href="https://apps.apple.com/us/app/wedstimate-wedding-planner/id1578772552">
+                                        <a target="_blank" href="https://apps.apple.com/us/app/wedstimate/id6712045315">
                                             <img src={applestore} alt="" width={150}/>
                                         </a>
                                     </div>

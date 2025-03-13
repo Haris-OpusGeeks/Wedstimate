@@ -17,6 +17,8 @@ import L from "leaflet";
 import {MapContainer, Marker, TileLayer} from "react-leaflet";
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import googleplay from "../assets/website/googleplay.png";
+import applestore from "../assets/website/applestore.png";
 // import {Autocomplete, useLoadScript} from "@react-google-maps/api";
 
 
@@ -237,7 +239,7 @@ export default function EditPreference() {
   }
 
   if (!preference) {
-    return <div>No preference data available.</div>; // Handle the case where preference is null or undefined
+    return <div class="preferenceError">No preference data available.<p>You have to install our mobile app and purchase our package to update your preferences.</p><div className="d-flex gap-3"> <a target="_blank" href="https://play.google.com/store/apps/details?id=com.wedstimatemobileapp" > <img src={googleplay} alt="" width={150} /> </a> <a target="_blank" href="https://apps.apple.com/us/app/wedstimate/id6712045315" > <img src={applestore} alt="" width={150} /> </a> </div></div>; 
   }
 
   return (

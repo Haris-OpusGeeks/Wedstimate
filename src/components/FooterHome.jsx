@@ -96,7 +96,7 @@ export default function FooterHome() {
                   <a target="_blank" href="https://play.google.com/store/apps/details?id=com.wedstimatemobileapp">
                     <img src={googleplay} alt="" width={150} />
                   </a>
-                  <a href="https://apps.apple.com/us/app/wedstimate-wedding-planner/id1578772552">
+                  <a target="_blank" href="https://apps.apple.com/us/app/wedstimate/id6712045315">
                     <img src={applestore} alt="" width={150} />
                   </a>
                 </div>
