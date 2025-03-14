@@ -60,6 +60,16 @@ class AuthServices {
     console.log(response);
     return response;
   };
+  resetPassword = async data => {
+    const response = await fetchApi({
+      method: 'POST',
+      endPoint: endPoints.RESET_PASSWORD,
+      data,
+      tenant: 'root',
+    });
+    console.log(response);
+    return response;
+  };
 }
 
 const authServices = new AuthServices();

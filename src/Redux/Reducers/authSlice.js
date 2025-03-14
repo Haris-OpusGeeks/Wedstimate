@@ -128,6 +128,21 @@ export const forgotPassword = createAsyncThunk(
   },
 );
 
+export const resetPassword = createAsyncThunk(
+  'resetPassword',
+  async ({requestData, onDone}, {dispatch}) => {
+    try {
+      const {status, data} = await authServices.resetPassword(requestData);
+      if (status === 200 ||status===201) {
+        onDone(data);
+        return data;
+      }
+    } catch (error) {
+      throw errorHandler(error, dispatch);
+    }
+  },
+);
+
 export const authSlice = createSlice({
   name: 'authSlice',
   initialState,

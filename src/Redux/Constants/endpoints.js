@@ -7,6 +7,7 @@ const endPoints = {
   ADMIN_VENDOR_SIGN_UP: 'users/admin-vendor-register',
   USER_SIGN_UP: 'register',
   FORGOT_PASSWORD: 'users/forgot-password',
+  RESET_PASSWORD: 'users/reset-password',
 
   // dashboard
   GET_DASHBOARD_DETAILS: 'v1/events/current-event',

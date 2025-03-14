@@ -10371,3 +10371,5 @@ article.blog .post_info ul li:last-child i {
 .preferenceError{height: 70vh;color: #000;display: flex;align-items: center;justify-content: center;font-size: 40px;flex-direction: column;}
 .preferenceError p{font-size: 25px;margin-top: 15px;}
 .preferenceError img{width: 200px;margin-top: 30px;}
+
+.forgot-password-link{color: #000;cursor: pointer;}
