@@ -10364,12 +10364,12 @@ article.blog .post_info ul li:last-child i {
 #installAppModal h5{font-size: 40px;font-weight: 600;}
 #installAppModal button.btn-close{opacity: 1; height: 30px; width: 30px; right: 20px; top: 20px;}
 #installAppModal .modal-body{display: flex ; height: 270px; flex-direction: column; gap: 30px;}
-#installAppModal .modal-body p{}
+#installAppModal .modal-body p{font-size: 20px;}
 #installAppModal .modal-body .d-flex{justify-content: center;}
 #installAppModal .modal-body .d-flex img{    width: 200px;}
 
-.preferenceError{height: 70vh;color: #000;display: flex;align-items: center;justify-content: center;font-size: 40px;flex-direction: column;}
-.preferenceError p{font-size: 25px;margin-top: 15px;}
+.preferenceError{height:100vh;color: #000;display: flex;align-items: center;justify-content: center;font-size: 40px;flex-direction: column;padding: 0px 8vw;}
+.preferenceError p{font-size: 25px;margin-top: 15px;text-align: center;}
 .preferenceError img{width: 200px;margin-top: 30px;}
 
 .forgot-password-link{color: #000;cursor: pointer;}

@@ -118,8 +118,9 @@ export default function SelectPackage() {
             </div>
             <div className="modal-body">
               <p>
-                You have to install our mobile app and purchase our package to
-                continue.
+              Please install our mobile app to start your 2-week FREE trial!<br></br><br></br>
+              After activating the FREE trial you can create a profile on your mobile device or return here and create your profile through this website.
+
               </p>
               <div className="d-flex gap-3">
                 <a

@@ -239,7 +239,8 @@ export default function EditPreference() {
   }
 
   if (!preference) {
-    return <div class="preferenceError">No preference data available.<p>You have to install our mobile app and purchase our package to update your preferences.</p><div className="d-flex gap-3"> <a target="_blank" href="https://play.google.com/store/apps/details?id=com.wedstimatemobileapp" > <img src={googleplay} alt="" width={150} /> </a> <a target="_blank" href="https://apps.apple.com/us/app/wedstimate/id6712045315" > <img src={applestore} alt="" width={150} /> </a> </div></div>; 
+    return <div class="preferenceError">No preference data available.<p>Please install our mobile app to start your 2-week FREE trial!<br></br><br></br>
+              After activating the FREE trial you can create a profile on your mobile device or return here and create your profile through this website.</p><div className="d-flex gap-3"> <a target="_blank" href="https://play.google.com/store/apps/details?id=com.wedstimatemobileapp" > <img src={googleplay} alt="" width={150} /> </a> <a target="_blank" href="https://apps.apple.com/us/app/wedstimate/id6712045315" > <img src={applestore} alt="" width={150} /> </a> </div></div>; 
   }
 
   return (
