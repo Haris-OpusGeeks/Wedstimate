@@ -1,21 +1,31 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-// import visualizer from 'rollup-plugin-visualizer';
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     react(),
-    // visualizer({
-    //   filename: './dist/stats.html',
-    //   open: true,
-    // }),
   ],
+
+  // 👇 ADD THIS BLOCK HERE
+  // server: {
+  //   proxy: {
+  //     '/api': {
+  //       target: 'https://wedstimateapi.com', // your live API
+  //       changeOrigin: true,
+  //       secure: false,
+  //       // rewrite: (path) => path.replace(/^\/api/, '/api/v1'), 
+  //     },
+  //   },
+  // },
+  // 👆 END OF NEW CODE
+
   optimizeDeps: {
     exclude: ['js-big-decimal'],
     include: ['react-chat-elements'],
   },
   build: {
-    chunkSizeWarningLimit: 1000, // Adjust the limit as needed, in kB
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {

@@ -1,4 +1,4 @@
-// import axios from "axios";
+// import axios from "axios"; 
 import axios from "axios";
 import { getAccessToken } from "./localStore";
 import moment from 'moment/moment';
@@ -6,6 +6,10 @@ import moment from 'moment/moment';
 
 // export const base_url = 'https://159.203.143.160';
 export const base_url = 'https://wedstimateapi.com';
+// export const base_url =
+//   import.meta.env.DEV
+//     ? '/api' 
+//     : 'https://wedstimateapi.com'; 
 
 // api helper
 export const fetchApi = async ({

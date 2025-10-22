@@ -1,5 +1,5 @@
 @import 'swiper/scss';
-@import 'swiper/scss/navigation';
+@import 'swiper/scss/navigation'; 
 @import 'swiper/scss/pagination';
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 @import url('https://fonts.googleapis.com/css2?family=Avenir:wght@400..800&display=swap');
@@ -126,21 +126,14 @@ body, html{
     width: 100% !important;
     height: 100% !important;
     display: flex !important;
-    align-items: center !important; 
+    align-items: end !important; 
     justify-content: center !important;
     z-index: 1050; /* Ensure it appears above other content */
     //padding: 100px 0;
   }
   
   .modal-dialog {
-    position: relative;
-    width: 80vw !important;
-    margin: 50px;
-      max-height: 60vh;
-      overflow-y: auto;
-      overflow-x: hidden;
-    // max-width: 100%;
-    margin: 1.75rem auto; /* Center the modal vertically */
+    position: relative; width: 80vw !important; max-width: 1020px !important; margin: 50px; max-height: 85%; overflow-y: auto; overflow-x: hidden; margin: 1.75rem auto; margin-bottom: 0px !important; 
     .close{
         p{
             margin: 0;
@@ -151,6 +144,8 @@ body, html{
 
   .dynamicModal .modal-body{
     flex-direction: column;
+    padding-left: 30px;
+    padding-right: 30px;
     p{
       font-size: 14px !important;
     }
@@ -161,19 +156,36 @@ body, html{
     }
   }
 
+  .categoriesPage .modal-header .swiper-button-prev, .categoriesPage .modal-header .swiper-button-next {
+    width: 35px;
+    height: 35px;
+    color: #023866 !important;
+    background-color: #D9D9D9 !important;
+    border-radius: 50%;
+}
+
+  .categoriesPage .modal-header .swiper-button-prev::after,.categoriesPage .modal-header .swiper-button-next::after {
+    font-size: 20px !important;
+    font-weight: 700;
+}
+.categoriesPage .modal-header{padding: 0px;}
+
   .modal-header{
       display: flex;
       flex-direction: column;
       align-items: center;
       position: relative;
+      
       .swiper-wrapper{
           width: 100% !important;
           .swiper-slide{
               width: 100% !important;
-              height: 300px;
+              height: auto;
               object-fit: cover;
               img{
                 width: 100%;
+                object-fit: cover;
+                height: 450px !important;
               }
           }
       }
@@ -194,6 +206,63 @@ body, html{
       }
   }
   
+  .categoriesPage .vendorContent .modal-title{ font-size: 46px; font-weight: 700; color: #023865;line-height: 50px;margin-bottom: 10px;}
+  .categoriesPage .vendorContent p{text-align: left !important;margin-top: 38px;}
+  .ratingBox{gap:5px !important;margin-top: 12px; justify-content: end;}  
+  .ratingBox h4{margin: 4px 0px 0px !important; font-size: 38px; font-weight: 700; color: #02387a; line-height: 30px;}
+  .ratingCount{margin: 9px 0px 15px; text-align: end; font-size: 16px; font-weight: 600; color: #000;}
+  .categoriesPage .swiper-wrapper{padding-left: 10px;}
+
+  .vendorPrice{}
+  .vendorPrice h4{font-size: 38px; font-weight: 700; color: #02387a; }
+  .vendorPrice p{}
+  .vendorPrice .btnDiv{}
+  .vendorPrice .btnDiv button{background-color: #FFC402; color: #023865; width: 100%; font-size: 16px; font-weight: 600; padding: 10px 10px; margin-bottom: 15px; border-radius: 10px;transition: all 0.4s;}
+  .vendorPrice .btnDiv button:hover{background-color: #023865;color: #fff;}
+
+  .mainreviewCard{border: 1px solid #bababa; border-radius: 10px; padding: 10px 15px;height: auto;}
+  .mainreviewCard .reviewerInfo {align-items: center;gap: 8px;}
+  .mainreviewCard .reviewerInfo .reviewerImage{}
+  .mainreviewCard .reviewerInfo .reviewerImage img{height: 50px;width: 50px !important;border-radius: 50%;object-fit: cover;}
+  .mainreviewCard .reviewerInfo .reviewerName{}
+  .mainreviewCard .reviewerInfo .reviewerName h5{font-size: 15px; font-weight: 700;margin: 0;}
+  .mainreviewCard .reviewerInfo .reviewerName h6{font-size: 12px; margin: 3px 0px 0px !important;color: #838383;}
+  .mainreviewCard .reviewRating{gap: 10px;    margin: 8px 0px 15px;}
+  .mainreviewCard .reviewRating > span{}
+  .mainreviewCard .contentBox p{text-align: start !important;    font-size: 12px !important;    margin-bottom: 0;}
+  .reviewText {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  transition: all 0.3s ease;
+}
+
+.reviewText.collapsed {
+  -webkit-line-clamp: 6; /* Limit to 7 lines */
+}
+
+.reviewText.expanded {
+  -webkit-line-clamp: unset;
+}
+
+.readMoreBtn {
+  background: none;
+  border: none;
+  color: #023865;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.readMoreBtn:hover {
+  text-decoration: underline;
+}
+
+
+  .reviewRow{margin-top: 30px !important;}
+
   .modal-content {
     border: 1px solid #dee2e6;
     border-radius: .3rem;

@@ -207,11 +207,11 @@ export default function Homepage() {
 						</a>
 					</div>
 					<div className="col-lg-4 col-md-6">
-						<a href="https://www.bloomphotographyca.com" className="grid_item" target='_blank'>
+						<a href="https://wedstimate.partners.engine.com/new-trip?utm_source=wedstimate&utm_medium=channel&utm_campaign=2025-q2-wedstimate-channel-groups-a01Hs00001zyMGoIAM&referral=MKT%20-%20Partner" className="grid_item" target='_blank'>
 							<figure>
 								<img src={vendor5} alt=""/>
 								<div className="info">
-									<h3>Bloom Photography</h3>
+									<h3>Engine: Discounts on Hotel Room Blocks</h3>
 								</div>
 							</figure>
 						</a>

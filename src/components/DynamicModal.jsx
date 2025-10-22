@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { base_url } from '../Redux/Utils/helper';
 import defaultImg from '../assets/default.jpg';
+import starImage from '../assets/Star-1.png';
 import { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createRoomForVendorPreference } from "../Redux/Reducers/chatSlice.js";
@@ -63,12 +64,10 @@ const DynamicModal = ({ show, onClose, buttonText, buttonAction, id }) => {
         setPosition([details.lat, details.lon]);
         setImages(details.imageUrls || [defaultImg]);
       });
-      if (localStorage.getItem('user')) {
         dispatch(getVendorsReviews(id)).then((response) => {
           setReviews(response.payload);
-        });
+        }); 
         console.log("reviews",reviews);
-      }
     }
   }, [id, dispatch]);
 
@@ -83,34 +82,114 @@ const DynamicModal = ({ show, onClose, buttonText, buttonAction, id }) => {
     });
 
     return (
-        <MapContainer center={position} zoom={13} style={{ height: "400px", width: "100%" }}>
+        <MapContainer center={position} zoom={13} style={{ height: "200px", width: "100%" }}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           <Marker position={position} icon={DefaultIcon} />
         </MapContainer>
     );
   };
-  const ReviewsList = ({ reviews }) => (
+const ReviewsList = ({ reviews }) => {
+  // helper: generate random light color
+  const getRandomLightColor = () => {
+    const hue = Math.floor(Math.random() * 360);
+    return `hsl(${hue}, 70%, 80%)`; // pastel shades
+  };
+
+  return (
     reviews?.length > 0 && (
-        <div className="reviews">
-          <h2>Reviews</h2>
-          {reviews.map((review) => (
-              <div className="d-flex" key={review.id}>
-                <div className="imageBox">
-                  <img src={review.coupleImageUrl ? `${base_url}/${review.coupleImageUrl}` : defaultImg} alt="Couple" />
+reviews?.length > 0 && (
+      <Swiper spaceBetween={10} slidesPerView={3} modules={[Navigation]} navigation>
+        {reviews.map((review, index) => {
+          const hasImage = !!review.coupleImageUrl;
+          const firstLetter = review.coupleName?.charAt(0)?.toUpperCase() || "?";
+          const bgColor = getRandomLightColor();
+
+          // local state for read more/less per review
+          const [isExpanded, setIsExpanded] = useState(false);
+
+          return (
+            <SwiperSlide key={index}>
+              <div className="mainreviewCard" key={review.id}>
+                {/* Reviewer Info */}
+                <div className="reviewerInfo d-flex gap-10">
+                  <div className="reviewerImage">
+                    {hasImage ? (
+                      <img
+                        src={`${base_url}/${review.coupleImageUrl}`}
+                        alt="Couple"
+                        className="w-100"
+                        style={{
+                          width: 50,
+                          height: 50,
+                          borderRadius: "50%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    ) : (
+                      <div
+                        style={{
+                          width: 45,
+                          height: 45,
+                          borderRadius: "50%",
+                          backgroundColor: bgColor,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          fontWeight: "bold",
+                          fontSize: "18px",
+                          color: "#fff",
+                          textTransform: "uppercase",
+                        }}
+                      >
+                        {firstLetter}
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="reviewerName">
+                    <h5>{review.coupleName}</h5>
+                    <h6>
+                      Sent on{" "}
+                      {review.date
+                        ? review.date.split("T")[0].split("-").reverse().join("-")
+                        : ""}
+                    </h6>
+                  </div>
                 </div>
-                <div className="contentBox">
-                  <h3>{review.coupleName}</h3>
+
+                {/* Rating */}
+                <div className="reviewRating d-flex gap-10">
                   <RatingDynamic rating={review.rating} />
-                  <p>{review.review}</p>
+                  <span>{review.rating === 5 ? `${review.rating}.0` : review.rating}</span>
+                </div>
+
+                {/* Review content with Read More */}
+                <div className="contentBox">
+                  <p className={`reviewText ${isExpanded ? "expanded" : "collapsed"}`}>
+                    {review.review}
+                  </p>
+
+                  {review.review?.length > 150 && ( // show button only for long reviews
+                    <button
+                      className="readMoreBtn"
+                      onClick={() => setIsExpanded(!isExpanded)}
+                    >
+                      {isExpanded ? "Read less" : "Read more"}
+                    </button>
+                  )}
                 </div>
               </div>
-          ))}
-          <hr />
-        </div>
+            </SwiperSlide>
+          );
+        })}
+      </Swiper>
     )
-);
+  )
+  );
+};
 
 
+// console.log("reviews>>>>", reviews.length);
   const handleShowToast = useCallback((message) => {
     setMessage(message);
     setShowToast(true);
@@ -162,18 +241,47 @@ const DynamicModal = ({ show, onClose, buttonText, buttonAction, id }) => {
             <div className="modal-content">
               <div className="modal-header">
                 <ImageSlider images={images} />
-                <h5 className="modal-title">{details ? details.name : null}</h5>
+                
                 <button type="button" className="close btn ms-auto" onClick={onClose} aria-label="Close">
                   <p aria-hidden="true">&times;</p>
                 </button>
               </div>
               <div className="modal-body">
-                <p>{details ? details.description : null}</p>
-                <hr />
-                <ReviewsList reviews={reviews} />
-                <MapDisplay position={position} />
+                <div className="row w-100">
+                  <div className="col-md-8 vendorContent">
+                    <h3 className="modal-title">{details ? details.name : null}</h3>
+                    <h6 class="modalAddress">{details ? details.address : null}</h6>
+                    <p>{details ? details.description : null}</p></div>
+                  <div className="col-md-4">
+                      <div className='ratingBox d-flex align-items-center'>
+                        <img src={starImage}/>
+                        <h4>{details?.rating ? parseFloat(details.rating.toFixed(1)) : 0}</h4>
+                      </div>
+                      <h6 class="ratingCount">{reviews.length} Reviews</h6>
+                      <h2 className='text-end'>Location</h2>
+                      <MapDisplay position={position} />
+                  </div>
+                </div>
+                <div className="row w-100 reviewRow">
+                  <div className="col-md-4">
+                    <div className="vendorPrice">
+                      <h4>${details ? details.price : null}</h4>
+                      <p className='text-start'>*Prices may vary based on time, date, and circumstances.</p>
+                      <div className="btnDiv">
+                        <button type="button" className="btn add" onClick={createChat}>Message Vendor</button>
+                        <button type="button" className="btn add" onClick={addVendorPreference}>Add To Dashboard</button>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div className="col-md-8">
+                    <ReviewsList reviews={reviews} />
+                  </div>
+                </div>
+                
+                
               </div>
-              <div className="modal-footer">
+              {/* <div className="modal-footer">
                 <div className="d-flex justify-content-around">
                   <div className="d-flex">
                     <button type="button" className="btn add" onClick={addVendorPreference}>Add To Dashboard</button>
@@ -189,7 +297,7 @@ const DynamicModal = ({ show, onClose, buttonText, buttonAction, id }) => {
                       </button>
                   )}
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
