@@ -283,6 +283,6 @@ const persistConfig = {
   timeout: null,
 };
 
-export default persistReducer(persistConfig, authSlice.reducer);
-export const { setLoginState, logout } = authSlice.actions;
+  export default persistReducer(persistConfig, authSlice.reducer);
+  export const { setLoginState, logout } = authSlice.actions;
 export const {isLoggedIn} = authSlice.reducer;

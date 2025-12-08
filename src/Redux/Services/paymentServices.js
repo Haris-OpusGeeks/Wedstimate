@@ -9,7 +9,7 @@ class PaymentServices {
             endPoint: endPoints.EXTEND_TRIAL,
             token: true,
             data,
-        });
+        }); 
         return response;
     }
 }

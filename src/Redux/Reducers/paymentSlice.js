@@ -10,21 +10,23 @@ const initialState = {
 }
 
 export const extendFreeTrial = createAsyncThunk(
-    'extendFreeTrial',
-    async (requestData, {dispatch}) => {
-        // console.log('trying');
-        try {
-            const {status, data} = await paymentServices.extendFreeTrial();
-            if (status === 200 || status === 201) {
-                console.log(data);
-                return data;
-            }
-        } catch (error) {
-            console.log(error);
-            throw errorHandler(error, dispatch);
-        }
-    },
+  'payment/extendFreeTrial',
+  async (requestData, { rejectWithValue }) => {
+    try {
+      const response = await paymentServices.extendFreeTrial(requestData);
+
+      if (response.status === 200 || response.status === 201) {
+        return response.data;
+      } else {
+        return rejectWithValue("Unexpected server response");
+      }
+
+    } catch (error) {
+      return rejectWithValue(error.response?.data || "Server error"); 
+    }
+  }
 );
+
 
 export const leadsSlice = createSlice({
     name: 'leadsSlice',
@@ -44,7 +46,7 @@ export const leadsSlice = createSlice({
         });
         builder.addCase(extendFreeTrial.rejected, (state, action) => {
             state.isError = true;
-            state.errorMessage = action.error.message;
+            state.errorMessage = action.payload || action.error.message;
         });
     },
     reducers: {},

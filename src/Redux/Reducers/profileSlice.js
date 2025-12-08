@@ -82,14 +82,12 @@ export const getCouples = createAsyncThunk(
     'getCouples',
     async (requestData, {dispatch}) => {
       try {
-        console.log("getCouples started");
         const {status, data} = await profileServices.getAllCouples(requestData);
         if (status === (200 || 201)) {
           console.log(data)
           console.log("getCouples ended");
           return data;
         }
-        console.log("getCouples ended");
       } catch (error) {
         throw errorHandler(error, dispatch);
       }
