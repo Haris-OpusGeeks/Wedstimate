@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 // import './App.scss'
-import { Route, Routes, Navigate, useLocation } from 'react-router-dom';
+import { Route, Routes, Navigate, useLocation,useNavigate  } from 'react-router-dom';
 import Login from './pages/dashboard/Login'
 import Homepage from './pages/Homepage';
 import HeaderHome from './components/HeaderHome';
@@ -30,13 +30,29 @@ import PrivacyPolicy from "./pages/PrivacyPolicy.jsx";
 import DeleteAccount from "./pages/DeleteAccount.jsx";
 import CreateEvent from "./pages/CreateEvent.jsx";
 import TermsOfService from "./pages/TermsOfService.jsx";
+import Download from './pages/Download.jsx';
+import MailchimpScript from './components/MailchimpScript.jsx';
 
+
+
+// A redirecting component to catch the '/p/:id' pattern
+const RedirectToDownload = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect to the static download page when the URL matches '/p/xyz' pattern
+    navigate('/download');
+  }, [navigate]);
+
+  return null; // You don't need to render anything for redirection
+};
 
 function App() {
 
 
     return (
         <>
+        <MailchimpScript/>
             <Routes>
                 <Route path="/dashboard/login" element=
                     <>
@@ -55,6 +71,15 @@ function App() {
                         <FooterHome/>
                     </>
                 }/>
+                <Route path="/post/:id" element={<RedirectToDownload />} />
+        
+                <Route path="/download" element={
+                    <>
+                    <Download />    
+                    </>
+                    
+                    } />
+
                 <Route path='/contact-us' element={
                     <>
                         <HeaderHomeScrolled/>

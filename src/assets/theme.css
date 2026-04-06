@@ -10360,7 +10360,7 @@ article.blog .post_info ul li:last-child i {
 
 #installAppModal{z-index: -1;}
 #installAppModal.show{z-index: 9999;}
-#installAppModal .modal-dialog{max-width: 750px !important;}
+#installAppModal .modal-dialog{max-width: 750px !important;margin: auto !important;}
 #installAppModal h5{font-size: 40px;font-weight: 600;}
 #installAppModal button.btn-close{opacity: 1; height: 30px; width: 30px; right: 20px; top: 20px;}
 #installAppModal .modal-body{display: flex ; height: 270px; flex-direction: column; gap: 30px;}
@@ -10373,3 +10373,17 @@ article.blog .post_info ul li:last-child i {
 .preferenceError img{width: 200px;margin-top: 30px;}
 
 .forgot-password-link{color: #000;cursor: pointer;}
+
+@media screen and (max-width: 450px) {
+  
+
+.DownloadSection{}
+.DownloadSection .modal{}
+#installAppModal .modal-dialog { max-width: 100% !important; margin: auto 10px !important; width: 100% !important; }
+.DownloadSection h5{font-size: 26px !important;text-align: center;}
+.DownloadSection p{font-size: 15px !important;margin: 0;}
+.DownloadSection img{}
+.DownloadSection .modal-body { height: auto !important; gap: 20px !important; }
+.DownloadSection .modal-body .d-flex{flex-direction: column;}
+
+}

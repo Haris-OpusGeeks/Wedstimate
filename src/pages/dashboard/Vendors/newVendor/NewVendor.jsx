@@ -50,25 +50,25 @@ function NewVendor() {
             Lat: 0,
             Lon: 0
         },
-        validationSchema: Yup.object({
-            firstName: Yup.string().required('First name is required'),
-            lastName: Yup.string().required('Last name is required'),
-            zipCode: Yup.string().max(5, 'It Must be 5 numbers only').required('ZIP Code is required'),
-            email: Yup.string().email('Invalid email format').required('Email is required'),
-            password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
-            address: Yup.string().required('Address is required'),
-            price: Yup.number().required('Price is required'),
-            description: Yup.string().required('Description is required'),
-            websiteUrl: Yup.string().required('Website URL is required'),
-            files: Yup.array()
-                .min(1, 'At least one image is required') // Ensures that images are selected
-                .of(
-                    Yup.mixed()
-                        .test('fileSize', 'File too large', value => !value || (value.size <= 5 * 1024 * 1024))
-                        .test('fileType', 'Unsupported File Format', value => !value || ['image/jpeg', 'image/png'].includes(value.type))
-                )
-                .required('Images are required'),
-        }),
+        // validationSchema: Yup.object({
+        //     firstName: Yup.string().required('First name is required'),
+        //     lastName: Yup.string().required('Last name is required'),
+        //     zipCode: Yup.string().max(5, 'It Must be 5 numbers only').required('ZIP Code is required'),
+        //     email: Yup.string().email('Invalid email format').required('Email is required'),
+        //     password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+        //     address: Yup.string().required('Address is required'),
+        //     price: Yup.number().required('Price is required'),
+        //     description: Yup.string().required('Description is required'),
+        //     websiteUrl: Yup.string().required('Website URL is required'),
+        //     files: Yup.array()
+        //         .min(1, 'At least one image is required') // Ensures that images are selected
+        //         .of(
+        //             Yup.mixed()
+        //                 .test('fileSize', 'File too large', value => !value || (value.size <= 5 * 1024 * 1024))
+        //                 .test('fileType', 'Unsupported File Format', value => !value || ['image/jpeg', 'image/png'].includes(value.type))
+        //         )
+        //         .required('Images are required'),
+        // }),
         onSubmit: (values, { resetForm }) => {
             console.log("submitted");
 
@@ -92,7 +92,7 @@ function NewVendor() {
             formData.append('Password', values?.password);
             formData.append('FirstName', values?.firstName);
             formData.append('LastName', values?.lastName);
-            formData.append('ProfileTypeId', '12fc2765-6b28-4f1e-8489-589ee5d08cab');
+            // formData.append('ProfileTypeId', '12fc2765-6b28-4f1e-8489-589ee5d08cab');
             values.files.forEach(file => formData.append("Images", file));
 
             // if (selectedImages?.length > 0) {

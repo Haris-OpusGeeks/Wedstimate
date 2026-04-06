@@ -112,12 +112,13 @@ export default function VendorLeads() {
 
 
     const handleAdd = async (vendorId, eventId, coupleId, eventDetails) => {
-        if (eventDetails) {
+        if (eventId) {
             const requestData = {
                 vendorPreferenceId : vendorId,
                 eventId : eventId,
                 coupleId : coupleId
             }
+
             dispatch(addVendorPreferencesInEvent({requestData}))
                 .then(()=>{
                     handleShowToast("vendor added to couple")
@@ -128,6 +129,7 @@ export default function VendorLeads() {
                 });
         } else {
             handleShowToast("event do not exist!");
+            console.log(coupleId,"eventDetailssssssss")
         }
     }
     return (
