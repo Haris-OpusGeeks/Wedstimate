@@ -52,7 +52,7 @@ function App() {
 
     return (
         <>
-        <MailchimpScript/>
+        {/* <MailchimpScript/> */}
             <Routes>
                 <Route path="/dashboard/login" element=
                     <>

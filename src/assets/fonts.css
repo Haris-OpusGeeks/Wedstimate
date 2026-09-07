@@ -5608,7 +5608,7 @@ em.mm-counter + a.mm-next + label.mm-toggle {
   max-height: 880px;
 }
 .rangeslider__fill,
-/.rangeslider {
+.rangeslider {
   display: block;
   -moz-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
   -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3);
