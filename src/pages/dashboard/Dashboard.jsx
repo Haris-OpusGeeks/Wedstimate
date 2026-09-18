@@ -20,6 +20,7 @@ import NewVendor from "./Vendors/newVendor/NewVendor.jsx";
 import SendEmail from "./Email/SendEmail.jsx";
 import AddReview from "./vendorEdit/Reviews/AddReview/AddReview.jsx";
 import MarketingNotifications from "./marketingNotifications/MarketingNotifications.jsx";
+import MarketingNotificationForm from "./marketingNotifications/MarketingNotificationForm.jsx";
 
 export default function Dashboard() {
   return (
@@ -261,6 +262,26 @@ export default function Dashboard() {
                                 <Header />
                                 <MarketingNotifications/>
                             </div>
+                        </div>
+                    </div>
+                </DashboardProtectedRoute>
+            }/>
+            <Route path='marketing-notifications/new' element={
+                <DashboardProtectedRoute>
+                    <div className="dashboard">
+                        <div className="row">
+                            <div className="col-lg-2"><Sidebar/></div>
+                            <div className="col-lg-10 col-sm-12"><Header /><MarketingNotificationForm/></div>
+                        </div>
+                    </div>
+                </DashboardProtectedRoute>
+            }/>
+            <Route path='marketing-notifications/edit/:id' element={
+                <DashboardProtectedRoute>
+                    <div className="dashboard">
+                        <div className="row">
+                            <div className="col-lg-2"><Sidebar/></div>
+                            <div className="col-lg-10 col-sm-12"><Header /><MarketingNotificationForm/></div>
                         </div>
                     </div>
                 </DashboardProtectedRoute>

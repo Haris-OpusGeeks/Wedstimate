@@ -1,9 +1,11 @@
 import DataTable from 'react-data-table-component';
 import {useEffect, useState} from 'react';
 import {useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
 import Loader from '../../../components/Loader.jsx';
 import {
   getListOfMarketingNotifications,
+  deleteMarketingNotification,
 } from '../../../Redux/Reducers/marketingNotificationSlice.js';
 import useMarketingNotificationSelector from '../../../Redux/Selectors/useMarketingNotificationSelector.js';
 import './MarketingNotifications.scss';
@@ -44,7 +46,7 @@ const customStyles = {
 
 export default function MarketingNotifications() {
   const dispatch = useDispatch();
-  const {notifications, isLoading, isError, errorMessage} =
+  const {notifications, isLoading, isError, isDeleting, errorMessage} =
     useMarketingNotificationSelector();
   const [filters, setFilters] = useState({
     status: '',
@@ -74,6 +76,16 @@ export default function MarketingNotifications() {
     loadNotifications(emptyFilters);
   };
 
+  const handleDelete = async id => {
+    if (!window.confirm('Delete this marketing notification? This action cannot be undone.')) return;
+    try {
+      await dispatch(deleteMarketingNotification(id)).unwrap();
+      loadNotifications(filters);
+    } catch (error) {
+      // The slice and shared error handler expose the API error to the user.
+    }
+  };
+
   const columns = [
     {name: 'Title', selector: row => row.title || '—', sortable: true, grow: 1.25},
     {name: 'Subject', selector: row => row.subject || '—', sortable: true, grow: 1.25},
@@ -83,6 +95,15 @@ export default function MarketingNotifications() {
     {name: 'Scheduled For', selector: row => formatDate(row.scheduledFor), grow: 1.2},
     {name: 'Sent On', selector: row => formatDate(row.sentOn), grow: 1.2},
     {name: 'Created On', selector: row => formatDate(row.createdOn), grow: 1.2},
+    {
+      name: 'Action',
+      cell: row => (
+        <div className="notificationActions">
+          <Link className="btn" to={`/dashboard/marketing-notifications/edit/${row.id}`} state={{notification: row}}>Edit</Link>
+          <button className="btn clearButton" type="button" disabled={isDeleting} onClick={() => handleDelete(row.id)}>Delete</button>
+        </div>
+      ),
+    },
   ];
 
   return (
@@ -123,6 +144,7 @@ export default function MarketingNotifications() {
               </select>
               <button className="btn" type="submit">Filter</button>
               <button className="btn clearButton" type="button" onClick={clearFilters}>Clear</button>
+              <Link className="btn" to="/dashboard/marketing-notifications/new">New</Link>
             </form>
           </div>
         </div>

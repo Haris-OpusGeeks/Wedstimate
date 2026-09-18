@@ -50,6 +50,47 @@ $primary: #023866;
     overflow-x: auto;
   }
 
+  .notificationActions,
+  .formActions {
+    display: flex;
+    gap: 8px;
+  }
+
+  .notificationForm {
+    margin-top: 30px;
+
+    label {
+      color: $primary;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    small {
+      color: #555;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  }
+
+  .formActions {
+    justify-content: flex-end;
+  }
+
+  .btn {
+    border-radius: 0;
+    background-color: $primary;
+    border: 1px solid $primary;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  .clearButton {
+    background-color: #fff;
+    color: $primary;
+  }
+
   .errorMessage {
     margin-top: 16px;
     color: #b42318;
