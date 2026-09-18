@@ -1,8 +1,11 @@
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 import {useDispatch} from 'react-redux';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
 import {Link, useLocation, useNavigate, useParams} from 'react-router-dom';
+import Select from 'react-select';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import Loader from '../../../components/Loader.jsx';
 import {
   createMarketingNotification,
@@ -10,6 +13,10 @@ import {
   updateMarketingNotification,
 } from '../../../Redux/Reducers/marketingNotificationSlice.js';
 import useMarketingNotificationSelector from '../../../Redux/Selectors/useMarketingNotificationSelector.js';
+import {getListOfVendors} from '../../../Redux/Reducers/categorySlice.js';
+import useCategorySelector from '../../../Redux/Selectors/useCategorySelector.js';
+import {getCouples} from '../../../Redux/Reducers/profileSlice.js';
+import useProfileSelector from '../../../Redux/Selectors/useProfileSelector.js';
 import './MarketingNotifications.scss';
 
 const audienceLabels = {
@@ -22,7 +29,7 @@ const audienceLabels = {
 const typeLabels = {
   1: 'Email',
   2: 'In-App Notification',
-  3: 'Both',
+  // 3: 'Both',
 };
 
 const toLocalDateTime = value => {
@@ -32,11 +39,19 @@ const toLocalDateTime = value => {
   return new Date(date.getTime() - offset).toISOString().slice(0, 16);
 };
 
-const parseCustomUserIds = value =>
-  value
-    .split(',')
-    .map(id => id.trim())
-    .filter(Boolean);
+const hasMeaningfulHtml = value => {
+  if (!/<[a-z][\s\S]*>/i.test(value || '')) return false;
+  return value.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim().length > 0;
+};
+
+const toHtmlBody = value => {
+  if (!value || /<[a-z][\s\S]*>/i.test(value)) return value;
+  const escapedValue = value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+  return `<p>${escapedValue}</p>`;
+};
 
 export default function MarketingNotificationForm() {
   const {id} = useParams();
@@ -45,6 +60,9 @@ export default function MarketingNotificationForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {notifications, isLoading, isSaving} = useMarketingNotificationSelector();
+  const {vendorItem} = useCategorySelector();
+  const {couples} = useProfileSelector();
+  const customAudienceLoaded = useRef(false);
   const notification =
     location.state?.notification || notifications.find(item => item.id === id);
 
@@ -54,6 +72,33 @@ export default function MarketingNotificationForm() {
     }
   }, [dispatch, isEditing, location.state]);
 
+  const vendorRecords = Array.isArray(vendorItem.vendors)
+    ? vendorItem.vendors
+    : vendorItem.vendors?.data || vendorItem.vendors?.items || [];
+  const coupleRecords = Array.isArray(couples.coupleList)
+    ? couples.coupleList
+    : couples.coupleList?.data || couples.coupleList?.items || [];
+  const audienceOptions = [
+    {
+      label: 'Vendors',
+      options: vendorRecords
+        .filter(vendor => vendor.vendorId || vendor.id)
+        .map(vendor => ({
+          value: vendor.vendorId || vendor.id,
+          label: `Vendor — ${vendor.name || 'Unnamed'}${vendor.vendorEmail ? ` (${vendor.vendorEmail})` : ''}`,
+        })),
+    },
+    {
+      label: 'Couples',
+      options: coupleRecords
+        .filter(couple => couple.id)
+        .map(couple => ({
+          value: couple.id,
+          label: `Couple — ${couple.fullName || 'Unnamed'}${couple.email ? ` (${couple.email})` : ''}`,
+        })),
+    },
+  ];
+
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: {
@@ -62,21 +107,31 @@ export default function MarketingNotificationForm() {
       body: notification?.body || '',
       type: String(notification?.type || 1),
       targetAudience: String(notification?.targetAudience ?? 0),
-      customUserIds: notification?.customUserIds?.join(', ') || '',
+      customUserIds: notification?.customUserIds || [],
       scheduledFor: toLocalDateTime(notification?.scheduledFor),
       isDraft: notification ? notification.status === 1 : true,
     },
     validationSchema: Yup.object({
       title: Yup.string().trim().required('Title is required'),
       subject: Yup.string().trim().required('Subject is required'),
-      body: Yup.string().trim().required('Message body is required'),
+      body: Yup.string()
+        .trim()
+        .required('Message body is required')
+        .when('type', {
+          is: type => type === '1' || type === '3',
+          then: schema => schema.test(
+            'valid-html',
+            'Email notifications require HTML content. Use the rich-text editor.',
+            hasMeaningfulHtml,
+          ),
+        }),
       type: Yup.string().oneOf(['1', '2', '3']).required('Type is required'),
       targetAudience: Yup.string()
         .oneOf(['0', '1', '2', '3'])
         .required('Audience is required'),
-      customUserIds: Yup.string().when('targetAudience', {
+      customUserIds: Yup.array().when('targetAudience', {
         is: '3',
-        then: schema => schema.required('At least one custom user ID is required'),
+        then: schema => schema.min(1, 'Select at least one user'),
       }),
       scheduledFor: Yup.string().nullable(),
     }),
@@ -88,10 +143,7 @@ export default function MarketingNotificationForm() {
         body: values.body.trim(),
         type: Number(values.type),
         targetAudience: Number(values.targetAudience),
-        customUserIds:
-          values.targetAudience === '3'
-            ? parseCustomUserIds(values.customUserIds)
-            : [],
+        customUserIds: values.targetAudience === '3' ? values.customUserIds : [],
         scheduledFor: values.scheduledFor
           ? new Date(values.scheduledFor).toISOString()
           : null,
@@ -117,6 +169,14 @@ export default function MarketingNotificationForm() {
       }
     },
   });
+
+  useEffect(() => {
+    if (formik.values.targetAudience === '3' && !customAudienceLoaded.current) {
+      customAudienceLoaded.current = true;
+      dispatch(getCouples());
+      dispatch(getListOfVendors({pageSize: 1000, pageNumber: 1}));
+    }
+  }, [dispatch, formik.values.targetAudience]);
 
   if (isEditing && !notification) {
     return (
@@ -151,13 +211,38 @@ export default function MarketingNotificationForm() {
           </div>
           <div className="mb-3">
             <label htmlFor="body">Message Body</label>
-            <textarea id="body" name="body" className="form-control" rows="8" {...formik.getFieldProps('body')} />
+            {formik.values.type === '1' || formik.values.type === '3' ? (
+              <>
+                <ReactQuill
+                  theme="snow"
+                  value={formik.values.body}
+                  onChange={value => formik.setFieldValue('body', value)}
+                  onBlur={() => formik.setFieldTouched('body', true)}
+                />
+                <small>Email content is sent as HTML. Use the editor to format it.</small>
+              </>
+            ) : (
+              <textarea id="body" name="body" className="form-control" rows="8" {...formik.getFieldProps('body')} />
+            )}
             {formik.touched.body && formik.errors.body && <div className="errorMessage">{formik.errors.body}</div>}
           </div>
           <div className="row">
             <div className="col-lg-4 mb-3">
               <label htmlFor="type">Notification Type</label>
-              <select id="type" name="type" className="form-control" {...formik.getFieldProps('type')}>
+              <select
+                id="type"
+                name="type"
+                className="form-control"
+                value={formik.values.type}
+                onBlur={formik.handleBlur}
+                onChange={event => {
+                  const selectedType = event.target.value;
+                  formik.setFieldValue('type', selectedType);
+                  if (selectedType === '1' || selectedType === '3') {
+                    formik.setFieldValue('body', toHtmlBody(formik.values.body));
+                  }
+                }}
+              >
                 {Object.entries(typeLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
               </select>
             </div>
@@ -174,9 +259,29 @@ export default function MarketingNotificationForm() {
           </div>
           {formik.values.targetAudience === '3' && (
             <div className="mb-3">
-              <label htmlFor="customUserIds">Custom User IDs</label>
-              <textarea id="customUserIds" name="customUserIds" className="form-control" rows="3" placeholder="Comma-separated user GUIDs" {...formik.getFieldProps('customUserIds')} />
-              <small>Enter the user GUIDs supplied by your audience source, separated by commas.</small>
+              <label htmlFor="customUserIds">Select Recipients</label>
+              <Select
+                inputId="customUserIds"
+                isMulti
+                isSearchable
+                isLoading={vendorItem.isLoading || couples.isLoading}
+                options={audienceOptions}
+                placeholder="Search by name or email..."
+                value={formik.values.customUserIds.map(id => {
+                  const option = audienceOptions
+                    .flatMap(group => group.options)
+                    .find(item => item.value === id);
+                  return option || {value: id, label: id};
+                })}
+                onChange={selectedOptions => {
+                  formik.setFieldValue(
+                    'customUserIds',
+                    (selectedOptions || []).map(option => option.value),
+                  );
+                }}
+                onBlur={() => formik.setFieldTouched('customUserIds', true)}
+              />
+              <small>Search and select any combination of couples and vendors.</small>
               {formik.touched.customUserIds && formik.errors.customUserIds && <div className="errorMessage">{formik.errors.customUserIds}</div>}
             </div>
           )}
