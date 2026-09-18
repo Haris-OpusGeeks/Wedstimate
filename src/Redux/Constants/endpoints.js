@@ -70,6 +70,9 @@ const endPoints = {
   //notifications
   GET_NOTIFICATIONS : 'v1/appnotifications',
 
+  // marketing notifications
+  MARKETING_NOTIFICATIONS: 'v1/marketingnotifications',
+
   //blog
   BLOGS:'v1/blogs',
 };

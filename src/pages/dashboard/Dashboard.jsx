@@ -19,6 +19,7 @@ import CreateCouples from "./couples/CreateCouples/CreateCouples.jsx";
 import NewVendor from "./Vendors/newVendor/NewVendor.jsx";
 import SendEmail from "./Email/SendEmail.jsx";
 import AddReview from "./vendorEdit/Reviews/AddReview/AddReview.jsx";
+import MarketingNotifications from "./marketingNotifications/MarketingNotifications.jsx";
 
 export default function Dashboard() {
   return (
@@ -244,6 +245,21 @@ export default function Dashboard() {
                             <div className="col-lg-10 col-sm-12">
                                 <Header />
                                 <EditPackages/>
+                            </div>
+                        </div>
+                    </div>
+                </DashboardProtectedRoute>
+            }/>
+            <Route path='marketing-notifications' element={
+                <DashboardProtectedRoute>
+                    <div className="dashboard">
+                        <div className="row">
+                            <div className="col-lg-2">
+                                <Sidebar/>
+                            </div>
+                            <div className="col-lg-10 col-sm-12">
+                                <Header />
+                                <MarketingNotifications/>
                             </div>
                         </div>
                     </div>

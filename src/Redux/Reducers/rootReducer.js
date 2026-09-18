@@ -10,6 +10,7 @@ import chatSlice from "./chatSlice";
 import preferenceSlice from "./preferenceSlice";
 import leadsSlice from "./leadsSlice";
 import notificationSlice from "./notificationSlice.js";
+import marketingNotificationSlice from "./marketingNotificationSlice.js";
 import blogSlice from "./blogSlice.js";
 import eventSlice from "./eventSlice.js";
 
@@ -25,6 +26,7 @@ const appReducer = combineReducers({
   preferenceReducer : preferenceSlice,
   leadsReducer : leadsSlice,
   notificationReducer : notificationSlice,
+  marketingNotificationReducer: marketingNotificationSlice,
   blogReducer:blogSlice,
   eventReducer: eventSlice,
 });
