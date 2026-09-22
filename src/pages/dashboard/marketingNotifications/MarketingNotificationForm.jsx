@@ -26,12 +26,6 @@ const audienceLabels = {
   3: 'Custom',
 };
 
-const typeLabels = {
-  1: 'Email',
-  2: 'In-App Notification',
-  // 3: 'Both',
-};
-
 const toLocalDateTime = value => {
   if (!value) return '';
   const date = new Date(value);
@@ -42,15 +36,6 @@ const toLocalDateTime = value => {
 const hasMeaningfulHtml = value => {
   if (!/<[a-z][\s\S]*>/i.test(value || '')) return false;
   return value.replace(/<[^>]*>/g, '').replace(/&nbsp;/g, ' ').trim().length > 0;
-};
-
-const toHtmlBody = value => {
-  if (!value || /<[a-z][\s\S]*>/i.test(value)) return value;
-  const escapedValue = value
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-  return `<p>${escapedValue}</p>`;
 };
 
 export default function MarketingNotificationForm() {
@@ -65,6 +50,12 @@ export default function MarketingNotificationForm() {
   const customAudienceLoaded = useRef(false);
   const notification =
     location.state?.notification || notifications.find(item => item.id === id);
+  const notificationType = location.pathname.includes('/email-notifications/')
+    ? 1
+    : location.pathname.includes('/app-notifications/')
+      ? 2
+      : notification?.type || 1;
+  const isEmailNotification = notificationType === 1;
 
   useEffect(() => {
     if (isEditing && !location.state?.notification) {
@@ -105,7 +96,7 @@ export default function MarketingNotificationForm() {
       title: notification?.title || '',
       subject: notification?.subject || '',
       body: notification?.body || '',
-      type: String(notification?.type || 1),
+      type: String(notificationType),
       targetAudience: String(notification?.targetAudience ?? 0),
       customUserIds: notification?.customUserIds || [],
       scheduledFor: toLocalDateTime(notification?.scheduledFor),
@@ -118,14 +109,14 @@ export default function MarketingNotificationForm() {
         .trim()
         .required('Message body is required')
         .when('type', {
-          is: type => type === '1' || type === '3',
+          is: type => type === '1',
           then: schema => schema.test(
             'valid-html',
             'Email notifications require HTML content. Use the rich-text editor.',
             hasMeaningfulHtml,
           ),
         }),
-      type: Yup.string().oneOf(['1', '2', '3']).required('Type is required'),
+      type: Yup.string().oneOf(['1', '2']).required('Type is required'),
       targetAudience: Yup.string()
         .oneOf(['0', '1', '2', '3'])
         .required('Audience is required'),
@@ -163,7 +154,7 @@ export default function MarketingNotificationForm() {
         } else {
           await dispatch(createMarketingNotification(requestData)).unwrap();
         }
-        navigate('/dashboard/marketing-notifications');
+        navigate(isEmailNotification ? '/dashboard/email-notifications' : '/dashboard/app-notifications');
       } catch (error) {
         // The slice and shared error handler expose the API error to the user.
       }
@@ -193,7 +184,9 @@ export default function MarketingNotificationForm() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-8">
-            <h2>{isEditing ? 'Edit Marketing Notification' : 'New Marketing Notification'}</h2>
+            <h2>
+              {isEditing ? 'Edit' : 'New'} {isEmailNotification ? 'Email' : 'App'} Notification
+            </h2>
           </div>
         </div>
         <form className="notificationForm" onSubmit={formik.handleSubmit}>
@@ -204,14 +197,14 @@ export default function MarketingNotificationForm() {
               {formik.touched.title && formik.errors.title && <div className="errorMessage">{formik.errors.title}</div>}
             </div>
             <div className="col-lg-6 mb-3">
-              <label htmlFor="subject">Email Subject</label>
+              <label htmlFor="subject">Subject</label>
               <input id="subject" name="subject" className="form-control" {...formik.getFieldProps('subject')} />
               {formik.touched.subject && formik.errors.subject && <div className="errorMessage">{formik.errors.subject}</div>}
             </div>
           </div>
           <div className="mb-3">
             <label htmlFor="body">Message Body</label>
-            {formik.values.type === '1' || formik.values.type === '3' ? (
+            {isEmailNotification ? (
               <>
                 <ReactQuill
                   theme="snow"
@@ -227,32 +220,13 @@ export default function MarketingNotificationForm() {
             {formik.touched.body && formik.errors.body && <div className="errorMessage">{formik.errors.body}</div>}
           </div>
           <div className="row">
-            <div className="col-lg-4 mb-3">
-              <label htmlFor="type">Notification Type</label>
-              <select
-                id="type"
-                name="type"
-                className="form-control"
-                value={formik.values.type}
-                onBlur={formik.handleBlur}
-                onChange={event => {
-                  const selectedType = event.target.value;
-                  formik.setFieldValue('type', selectedType);
-                  if (selectedType === '1' || selectedType === '3') {
-                    formik.setFieldValue('body', toHtmlBody(formik.values.body));
-                  }
-                }}
-              >
-                {Object.entries(typeLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
-              </select>
-            </div>
-            <div className="col-lg-4 mb-3">
+            <div className="col-lg-6 mb-3">
               <label htmlFor="targetAudience">Target Audience</label>
               <select id="targetAudience" name="targetAudience" className="form-control" {...formik.getFieldProps('targetAudience')}>
                 {Object.entries(audienceLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
               </select>
             </div>
-            <div className="col-lg-4 mb-3">
+            <div className="col-lg-6 mb-3">
               <label htmlFor="scheduledFor">Schedule For</label>
               <input id="scheduledFor" name="scheduledFor" type="datetime-local" className="form-control" {...formik.getFieldProps('scheduledFor')} />
             </div>
@@ -290,7 +264,7 @@ export default function MarketingNotificationForm() {
             <label className="form-check-label" htmlFor="isDraft">Save as draft</label>
           </div>
           <div className="formActions">
-            <Link className="btn clearButton" to="/dashboard/marketing-notifications">Cancel</Link>
+            <Link className="btn clearButton" to={isEmailNotification ? '/dashboard/email-notifications' : '/dashboard/app-notifications'}>Cancel</Link>
             <button className="btn" type="submit" disabled={isSaving}>
               {isSaving ? 'Saving...' : isEditing ? 'Update Notification' : 'Create Notification'}
             </button>

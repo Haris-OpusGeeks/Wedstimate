@@ -19,7 +19,8 @@ import CreateCouples from "./couples/CreateCouples/CreateCouples.jsx";
 import NewVendor from "./Vendors/newVendor/NewVendor.jsx";
 import SendEmail from "./Email/SendEmail.jsx";
 import AddReview from "./vendorEdit/Reviews/AddReview/AddReview.jsx";
-import MarketingNotifications from "./marketingNotifications/MarketingNotifications.jsx";
+import EmailNotifications from "./marketingNotifications/EmailNotifications.jsx";
+import AppNotifications from "./marketingNotifications/AppNotifications.jsx";
 import MarketingNotificationForm from "./marketingNotifications/MarketingNotificationForm.jsx";
 
 export default function Dashboard() {
@@ -251,7 +252,7 @@ export default function Dashboard() {
                     </div>
                 </DashboardProtectedRoute>
             }/>
-            <Route path='marketing-notifications' element={
+            <Route path='email-notifications' element={
                 <DashboardProtectedRoute>
                     <div className="dashboard">
                         <div className="row">
@@ -260,13 +261,13 @@ export default function Dashboard() {
                             </div>
                             <div className="col-lg-10 col-sm-12">
                                 <Header />
-                                <MarketingNotifications/>
+                                <EmailNotifications/>
                             </div>
                         </div>
                     </div>
                 </DashboardProtectedRoute>
             }/>
-            <Route path='marketing-notifications/new' element={
+            <Route path='email-notifications/new' element={
                 <DashboardProtectedRoute>
                     <div className="dashboard">
                         <div className="row">
@@ -276,7 +277,42 @@ export default function Dashboard() {
                     </div>
                 </DashboardProtectedRoute>
             }/>
-            <Route path='marketing-notifications/edit/:id' element={
+            <Route path='email-notifications/edit/:id' element={
+                <DashboardProtectedRoute>
+                    <div className="dashboard">
+                        <div className="row">
+                            <div className="col-lg-2"><Sidebar/></div>
+                            <div className="col-lg-10 col-sm-12"><Header /><MarketingNotificationForm/></div>
+                        </div>
+                    </div>
+                </DashboardProtectedRoute>
+            }/>
+            <Route path='app-notifications' element={
+                <DashboardProtectedRoute>
+                    <div className="dashboard">
+                        <div className="row">
+                            <div className="col-lg-2">
+                                <Sidebar/>
+                            </div>
+                            <div className="col-lg-10 col-sm-12">
+                                <Header />
+                                <AppNotifications/>
+                            </div>
+                        </div>
+                    </div>
+                </DashboardProtectedRoute>
+            }/>
+            <Route path='app-notifications/new' element={
+                <DashboardProtectedRoute>
+                    <div className="dashboard">
+                        <div className="row">
+                            <div className="col-lg-2"><Sidebar/></div>
+                            <div className="col-lg-10 col-sm-12"><Header /><MarketingNotificationForm/></div>
+                        </div>
+                    </div>
+                </DashboardProtectedRoute>
+            }/>
+            <Route path='app-notifications/edit/:id' element={
                 <DashboardProtectedRoute>
                     <div className="dashboard">
                         <div className="row">

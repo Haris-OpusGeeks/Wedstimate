@@ -38,7 +38,7 @@ const customStyles = {
   cells: {style: {fontSize: '15px', color: '#023866'}},
 };
 
-export default function MarketingNotifications() {
+export default function EmailNotifications() {
   const dispatch = useDispatch();
   const {notifications, isLoading, isError, isDeleting, errorMessage} =
     useMarketingNotificationSelector();
@@ -46,13 +46,12 @@ export default function MarketingNotifications() {
     status: '',
     targetAudience: '',
   });
-  const [selectedType, setSelectedType] = useState('1');
 
-  const loadNotifications = (params, type = selectedType) => {
+  const loadNotifications = params => {
     const activeFilters = Object.fromEntries(
       Object.entries(params).filter(([, value]) => value !== ''),
     );
-    dispatch(getListOfMarketingNotifications({...activeFilters, type: Number(type)}));
+    dispatch(getListOfMarketingNotifications({...activeFilters, type: 1}));
   };
 
   useEffect(() => {
@@ -70,13 +69,8 @@ export default function MarketingNotifications() {
     loadNotifications(emptyFilters);
   };
 
-  const selectNotificationType = type => {
-    setSelectedType(type);
-    loadNotifications(filters, type);
-  };
-
   const handleDelete = async id => {
-    if (!window.confirm('Delete this marketing notification? This action cannot be undone.')) return;
+    if (!window.confirm('Delete this email notification? This action cannot be undone.')) return;
     try {
       await dispatch(deleteMarketingNotification(id)).unwrap();
       loadNotifications(filters);
@@ -97,7 +91,7 @@ export default function MarketingNotifications() {
       name: 'Action',
       cell: row => (
         <div className="notificationActions">
-          <Link className="btn" to={`/dashboard/marketing-notifications/edit/${row.id}`} state={{notification: row}}>Edit</Link>
+          <Link className="btn" to={`/dashboard/email-notifications/edit/${row.id}`} state={{notification: row}}>Edit</Link>
           <button className="btn clearButton" type="button" disabled={isDeleting} onClick={() => handleDelete(row.id)}>Delete</button>
         </div>
       ),
@@ -109,23 +103,7 @@ export default function MarketingNotifications() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-5">
-            <h2>Marketing Notifications</h2>
-            <div className="notificationTabs" role="tablist" aria-label="Notification type">
-              <button
-                className={selectedType === '1' ? 'active' : ''}
-                type="button"
-                onClick={() => selectNotificationType('1')}
-              >
-                Email Notifications
-              </button>
-              <button
-                className={selectedType === '2' ? 'active' : ''}
-                type="button"
-                onClick={() => selectNotificationType('2')}
-              >
-                App Notifications
-              </button>
-            </div>
+            <h2>Email Notifications</h2>
           </div>
           <div className="col-lg-7">
             <form className="notificationFilters" onSubmit={handleSubmit}>
@@ -149,8 +127,8 @@ export default function MarketingNotifications() {
               </select>
               <button className="btn" type="submit">Filter</button>
               <button className="btn clearButton" type="button" onClick={clearFilters}>Clear</button>
-              <Link className="btn" to={`/dashboard/marketing-notifications/new?type=${selectedType}`}>
-                New {selectedType === '1' ? 'Email' : 'App'} Notification
+              <Link className="btn" to="/dashboard/email-notifications/new">
+                New Email Notification
               </Link>
             </form>
           </div>
@@ -165,7 +143,7 @@ export default function MarketingNotifications() {
               responsive
             />
           )}
-          {isError && <p className="errorMessage">{errorMessage || 'Unable to load marketing notifications.'}</p>}
+          {isError && <p className="errorMessage">{errorMessage || 'Unable to load email notifications.'}</p>}
         </div>
       </div>
     </div>

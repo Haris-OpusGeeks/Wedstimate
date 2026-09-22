@@ -56,7 +56,7 @@ body, html{
     height: 100vh;
     background-color: $primary;
     width: 16%;
-    padding: 100px 30px;
+    padding: 50px 30px;
     display: flex;
     flex-direction: column;
     // justify-content: center;
@@ -65,14 +65,14 @@ body, html{
         width: 100%;
         display: flex;
         justify-content: center;
-        margin-bottom: 100px;
-        img{}
+        margin-bottom: 50px;
     }
     .sidebarMenu{
         width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        overflow-y: scroll;
         .nav-pills{
             row-gap: 45px;
             .nav-link{

@@ -17,6 +17,25 @@ $primary: #023866;
     color: $primary;
   }
 
+  .notificationTabs {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+
+    button {
+      border: 1px solid $primary;
+      background: #fff;
+      color: $primary;
+      padding: 8px 12px;
+      font-weight: 700;
+
+      &.active {
+        background: $primary;
+        color: #fff;
+      }
+    }
+  }
+
   .notificationFilters {
     display: flex;
     gap: 10px;
