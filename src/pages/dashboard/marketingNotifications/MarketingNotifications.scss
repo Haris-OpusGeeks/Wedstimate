@@ -67,7 +67,18 @@ $primary: #023866;
   .listingArea {
     margin-top: 30px;
     overflow-x: auto;
+    .btn{
+      background: #fff;
+      border: #fff;
+      transition: 0.3s ease all;
+      
+      &:hover{
+        transform: scale(1.1);
+      }
+    }
   }
+
+
 
   .notificationActions,
   .formActions {
