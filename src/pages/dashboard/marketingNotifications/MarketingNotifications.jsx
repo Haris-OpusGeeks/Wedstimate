@@ -123,7 +123,7 @@ export default function MarketingNotifications() {
                 type="button"
                 onClick={() => selectNotificationType('2')}
               >
-                App Notifications
+                Push Notifications
               </button>
             </div>
           </div>

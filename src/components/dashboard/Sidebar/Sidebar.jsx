@@ -71,7 +71,7 @@ export default function Sidebar() {
                   <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none" >
                     <path d="M7.5 2.5H17.5C18.605 2.5 19.5 3.395 19.5 4.5V19.5C19.5 20.605 18.605 21.5 17.5 21.5H7.5C6.395 21.5 5.5 20.605 5.5 19.5V4.5C5.5 3.395 6.395 2.5 7.5 2.5ZM7.5 4.5V19.5H17.5V4.5H7.5ZM11 17.5H14V18.5H11V17.5Z" fill="white" />
                   </svg>
-                  App Notifications
+                  Push Notifications
                 </Link>
               </div>
           </div>
@@ -139,7 +139,7 @@ export default function Sidebar() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
                       <path d="M3.5 5.5C3.5 4.395 4.395 3.5 5.5 3.5H19.5C20.605 3.5 21.5 4.395 21.5 5.5V18.5C21.5 19.605 20.605 20.5 19.5 20.5H5.5C4.395 20.5 3.5 19.605 3.5 18.5V5.5ZM5.5 5.5V6.18L12.5 11.03L19.5 6.18V5.5H5.5ZM19.5 18.5V8.61L13.07 13.07C12.73 13.31 12.27 13.31 11.93 13.07L5.5 8.61V18.5H19.5Z" fill="white"/>
                     </svg>
-                    App Notifications</Link>
+                    Push Notifications</Link>
                 </div>
             </div>
             {/*<div className="logoutBtn">*/}

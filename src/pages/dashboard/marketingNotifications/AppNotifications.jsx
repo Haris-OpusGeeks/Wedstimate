@@ -70,7 +70,7 @@ export default function AppNotifications() {
   };
 
   const handleDelete = async id => {
-    if (!window.confirm('Delete this app notification? This action cannot be undone.')) return;
+    if (!window.confirm('Delete this push notification? This action cannot be undone.')) return;
     try {
       await dispatch(deleteMarketingNotification(id)).unwrap();
       loadNotifications(filters);
@@ -124,7 +124,7 @@ export default function AppNotifications() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-lg-5">
-            <h2>App Notifications</h2>
+            <h2>Push Notifications</h2>
           </div>
           <div className="col-lg-7">
             <form className="notificationFilters" onSubmit={handleSubmit}>
@@ -149,7 +149,7 @@ export default function AppNotifications() {
               <button className="btn" type="submit">Filter</button>
               <button className="btn clearButton" type="button" onClick={clearFilters}>Clear</button>
               <Link className="btn" to="/dashboard/app-notifications/new">
-                New App Notification
+                New Push Notification
               </Link>
             </form>
           </div>
@@ -164,7 +164,7 @@ export default function AppNotifications() {
               responsive
             />
           )}
-          {isError && <p className="errorMessage">{errorMessage || 'Unable to load app notifications.'}</p>}
+          {isError && <p className="errorMessage">{errorMessage || 'Unable to load push notifications.'}</p>}
         </div>
       </div>
     </div>
